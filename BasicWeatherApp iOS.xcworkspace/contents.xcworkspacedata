@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:ListViewData+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:ListViewData+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:DataLocation+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:DataLocation+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BasicWeatherApp iOS.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
+</Workspace>

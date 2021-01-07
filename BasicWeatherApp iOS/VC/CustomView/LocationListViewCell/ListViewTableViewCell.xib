@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ListViewTableViewCell" id="Zdb-6F-zge" customClass="ListViewTableViewCell" customModule="BasicWeatherApp_iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zdb-6F-zge" id="dTL-cM-R5H">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오전 13:40분" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQF-fC-iAG">
+                        <rect key="frame" x="20" y="4" width="107" height="24"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="베네치아" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3cF-oP-8HC">
+                        <rect key="frame" x="20" y="36" width="121.5" height="42"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9º" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PIf-h6-EkN">
+                        <rect key="frame" x="325" y="11" width="69" height="77"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="70"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottomMargin" secondItem="PIf-h6-EkN" secondAttribute="bottom" constant="1" id="Gad-AZ-WTS"/>
+                    <constraint firstItem="PIf-h6-EkN" firstAttribute="top" secondItem="dTL-cM-R5H" secondAttribute="topMargin" id="HGo-Ub-Srz"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="3cF-oP-8HC" secondAttribute="bottom" constant="11" id="IK9-ZC-ObP"/>
+                    <constraint firstItem="hQF-fC-iAG" firstAttribute="leading" secondItem="3cF-oP-8HC" secondAttribute="leading" id="MOd-fi-G8D"/>
+                    <constraint firstItem="PIf-h6-EkN" firstAttribute="trailing" secondItem="dTL-cM-R5H" secondAttribute="trailingMargin" id="OTW-rc-E2c"/>
+                    <constraint firstItem="3cF-oP-8HC" firstAttribute="top" secondItem="hQF-fC-iAG" secondAttribute="bottom" constant="8" symbolic="YES" id="Tle-w4-qvf"/>
+                    <constraint firstItem="3cF-oP-8HC" firstAttribute="leading" secondItem="dTL-cM-R5H" secondAttribute="leadingMargin" id="iSq-Q0-e5y"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <connections>
+                <outlet property="currentTempLabel" destination="PIf-h6-EkN" id="zx9-eB-VvS"/>
+                <outlet property="stateNameLabel" destination="3cF-oP-8HC" id="kQP-yd-CSh"/>
+                <outlet property="timeLabel" destination="hQF-fC-iAG" id="zVi-uR-F6L"/>
+            </connections>
+            <point key="canvasLocation" x="142.02898550724638" y="56.919642857142854"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

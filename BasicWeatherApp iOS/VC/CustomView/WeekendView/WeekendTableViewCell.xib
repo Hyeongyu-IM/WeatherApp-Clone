@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="WeekendTableViewCell" id="fxG-Mi-jNu" customClass="WeekendTableViewCell" customModule="BasicWeatherApp_iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fxG-Mi-jNu" id="qvb-3d-bcU">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="금요일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="imZ-u7-pQ4">
+                        <rect key="frame" x="20" y="11" width="49.5" height="23"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="h2i-Ps-tMW">
+                        <rect key="frame" x="236" y="11" width="170" height="23"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="금요일" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RUX-5J-3eX">
+                                <rect key="frame" x="0.0" y="0.0" width="47" height="23"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="금요일" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lsp-eI-UH0">
+                                <rect key="frame" x="59" y="0.0" width="49.5" height="23"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="49.5" id="qMT-hs-Tnx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="금요일" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AHr-dh-hTn">
+                                <rect key="frame" x="120.5" y="0.0" width="49.5" height="23"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="49.5" id="lga-ZI-lHv"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
+                                <color key="textColor" systemColor="opaqueSeparatorColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wZw-vf-cR3">
+                        <rect key="frame" x="184.5" y="-0.5" width="45" height="45"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="45" id="3Ds-il-opb"/>
+                            <constraint firstAttribute="height" constant="45" id="8M5-Ed-vSC"/>
+                            <constraint firstAttribute="width" secondItem="wZw-vf-cR3" secondAttribute="height" multiplier="45:45" id="IMp-NM-C2u"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="imZ-u7-pQ4" firstAttribute="top" secondItem="qvb-3d-bcU" secondAttribute="top" constant="11" id="7w5-8y-qDW"/>
+                    <constraint firstAttribute="bottom" secondItem="h2i-Ps-tMW" secondAttribute="bottom" constant="10" id="AeU-P2-dZ8"/>
+                    <constraint firstItem="h2i-Ps-tMW" firstAttribute="top" secondItem="qvb-3d-bcU" secondAttribute="top" constant="11" id="DaG-Pb-cJe"/>
+                    <constraint firstItem="imZ-u7-pQ4" firstAttribute="leading" secondItem="qvb-3d-bcU" secondAttribute="leading" constant="20" symbolic="YES" id="JAd-gg-aMX"/>
+                    <constraint firstItem="wZw-vf-cR3" firstAttribute="centerX" secondItem="qvb-3d-bcU" secondAttribute="centerX" id="Mkh-4N-923"/>
+                    <constraint firstAttribute="trailing" secondItem="h2i-Ps-tMW" secondAttribute="trailing" constant="8" id="T44-rN-mtp"/>
+                    <constraint firstItem="wZw-vf-cR3" firstAttribute="width" secondItem="wZw-vf-cR3" secondAttribute="height" multiplier="45:45" id="TBe-6E-LfN"/>
+                    <constraint firstAttribute="bottom" secondItem="imZ-u7-pQ4" secondAttribute="bottom" constant="10" id="bhM-88-pTt"/>
+                    <constraint firstItem="wZw-vf-cR3" firstAttribute="centerY" secondItem="qvb-3d-bcU" secondAttribute="centerY" id="l9k-Px-nfB"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="weekendIcon" destination="wZw-vf-cR3" id="9bM-Hw-s6k"/>
+                <outlet property="weekendLabel" destination="imZ-u7-pQ4" id="44b-x1-Z4t"/>
+                <outlet property="weekendMaxTempLabel" destination="lsp-eI-UH0" id="M5I-EI-U3p"/>
+                <outlet property="weekendMinTempLabel" destination="AHr-dh-hTn" id="Vle-2W-fE0"/>
+                <outlet property="weekendPercent" destination="RUX-5J-3eX" id="1bN-r3-Ljx"/>
+            </connections>
+            <point key="canvasLocation" x="-508" y="-1"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
