@@ -21,7 +21,7 @@ import UIKit
     var weekendTableViewCell : Binder<[WeekendCell]>
     var weatherDescription: String?
     var isHeaderViewMade: Bool
-    lazy var weatherListTableCell = WeatherListViewCell(time: "", state: "", currentTempC: "") {
+    lazy var weatherListTableCell = WeatherListViewCell(time: "", state: "", currentTempC: "", backgrounTime: "") {
         willSet{
             coreData.saveOrUpdateListViewData(newValue)
         }

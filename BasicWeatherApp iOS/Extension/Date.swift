@@ -8,36 +8,64 @@
 import Foundation
 
 extension Date {
-    // 요일표시 포맷
-    func dtToWeekend() -> String {
-       let dateFormatter = DateFormatter()
-       dateFormatter.dateFormat = "EEEE"
-         dateFormatter.locale = Locale(identifier: "ko-kr")
-       return dateFormatter.string(from: self)
+    
+    func dtToWeekend(_ timezone: Int ) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE"
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: timezone)
+        return dateFormatter.string(from: self)
     }
     
-    // 오전/오후 몇시 표시 포맷
-     func dtToTimeWithLetter() -> String {
+    func dtToTimeWithLetter(_ timezone: Int ) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "a h시"
-          dateFormatter.locale = Locale(identifier: "ko-kr")
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: timezone)
         return dateFormatter.string(from: self)
-     }
-
-    // 오전/오후 몇시:몇분 포맷
-     func curretTime() -> String {
+    }
+    
+    func curretTime(_ timezone: Int ) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "a h:m"
-          dateFormatter.locale = Locale(identifier: "ko-kr")
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: timezone)
         return dateFormatter.string(from: self)
-     }
-
-     func timeForBackground() -> Int {
+    }
+    
+    func timeForBackground(_ timezone: Int ) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "H"
-          dateFormatter.locale = Locale(identifier: "ko-kr")
-        return Int(dateFormatter.string(from: self))!
-       }
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: timezone)
+        return dateFormatter.string(from: self)
+    }
+//    // 요일표시 포맷
+//    func dtToWeekend() -> String {
+//       let dateFormatter = DateFormatter()
+//       dateFormatter.dateFormat = "EEEE"
+//         dateFormatter.locale = Locale(identifier: "ko-kr")
+//       return dateFormatter.string(from: self)
+//    }
+//
+//    // 오전/오후 몇시 표시 포맷
+//     func dtToTimeWithLetter() -> String {
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "a h시"
+//          dateFormatter.locale = Locale(identifier: "ko-kr")
+//        return dateFormatter.string(from: self)
+//     }
+//
+//    // 오전/오후 몇시:몇분 포맷
+//     func curretTime() -> String {
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "a h:m"
+//          dateFormatter.locale = Locale(identifier: "ko-kr")
+//        return dateFormatter.string(from: self)
+//     }
+//
+//     func timeForBackground() -> Int {
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "H"
+//          dateFormatter.locale = Locale(identifier: "ko-kr")
+//        return Int(dateFormatter.string(from: self))!
+//       }
 }
 
  

@@ -19,4 +19,5 @@ extension ListViewData {
     @NSManaged public var time: String?
     @NSManaged public var stateName: String?
     @NSManaged public var temperature: String?
+    @NSManaged public var backgrounTime: String?
 }

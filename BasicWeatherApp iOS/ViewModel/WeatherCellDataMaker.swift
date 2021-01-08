@@ -22,11 +22,11 @@ class WeatherCellDataMaker {
         let sunsetDT = isSunRiseOrSunSetAlreadyPast("sunset")
         let sunriseDT = isSunRiseOrSunSetAlreadyPast("sunrise")
         let sunsetCell = HourCell(dt: sunsetDT ,
-                                  time: utcTimeConvertor.convertDateFromUTC(string: String(sunsetDT), timezone: data.timezone_offset).dtToTimeWithLetter() ,
+                                  time: utcTimeConvertor.convertingUTCtime(sunsetDT).dtToTimeWithLetter(data.timezone_offset) ,
                                   icon: UIImage(systemName: "sunset.fill")!.withTintColor(.white) ,
                                   Ctemp: "일몰")
         let sunriseCell = HourCell(dt: sunriseDT,
-                                   time: utcTimeConvertor.convertDateFromUTC(string: String(sunriseDT), timezone: data.timezone_offset).dtToTimeWithLetter(),
+                                   time: utcTimeConvertor.convertingUTCtime(sunriseDT).dtToTimeWithLetter(data.timezone_offset),
                                    icon: UIImage(systemName: "sunrise.fill")!.withTintColor(.white),
                                    Ctemp: "일출")
         let currentCell = HourCell(dt: data.current.dt,
@@ -36,7 +36,7 @@ class WeatherCellDataMaker {
         
         var hourCells: [HourCell] = data.hourly.map {
             HourCell(dt: $0.dt ,
-                     time: utcTimeConvertor.convertDateFromUTC(string: String(sunsetDT), timezone: data.timezone_offset).dtToTimeWithLetter(),
+                     time: utcTimeConvertor.convertingUTCtime($0.dt).dtToTimeWithLetter(data.timezone_offset),
                      icon: imageFileManager.loadImage("\($0.weather[0].icon)"),
                      Ctemp: "\(temperature: Temperature(kelvin: $0.temp).text)")
         }
@@ -53,7 +53,7 @@ class WeatherCellDataMaker {
     //MARK: - WeekendTableData Config
     func getWeekendDataCell() -> [WeekendCell] {
         let weekendCells = data.daily.map {
-            WeekendCell(weekend: utcTimeConvertor.convertDateFromUTC(string: String($0.dt), timezone: data.timezone_offset).dtToWeekend(),
+            WeekendCell(weekend: utcTimeConvertor.convertingUTCtime($0.dt).dtToWeekend(data.timezone_offset),
                              icon: imageFileManager.loadImage("\($0.weather[0].icon)"),
                              minCTemp: "\(temperature: Temperature(kelvin: $0.temp.min).text)",
                              maxCTemp: "\(temperature: Temperature(kelvin: $0.temp.max).text)",
@@ -64,8 +64,8 @@ class WeatherCellDataMaker {
     
     //MARK: - DetailData Config
     func getdetailDataCell() -> DetailCell {
-        let detailCell: DetailCell = DetailCell(sunrise: utcTimeConvertor.convertDateFromUTC(string: String(data.current.sunrise), timezone: data.timezone_offset).curretTime(),
-                                                sunset: utcTimeConvertor.convertDateFromUTC(string: String(data.current.sunset), timezone: data.timezone_offset).curretTime(),
+        let detailCell: DetailCell = DetailCell(sunrise: utcTimeConvertor.convertingUTCtime(data.current.sunrise).curretTime(data.timezone_offset),
+                                                sunset: utcTimeConvertor.convertingUTCtime(data.current.sunset).curretTime(data.timezone_offset),
                                                 snow: String(data.current.snow?.lastHour ?? 0),
                                                 humidity: "\(humidity: data.current.humidity)",
                                                 wind: "\(wind: data.current.wind_speed)",
@@ -90,9 +90,10 @@ class WeatherCellDataMaker {
     
     //MARK: - WeatherListTableCell DataConfig
     func getWeatherListDataCell() -> WeatherListViewCell {
-        let weatherListCell = WeatherListViewCell(time: utcTimeConvertor.convertDateFromUTC(string: String(data.current.dt), timezone: data.timezone_offset).curretTime(),
+        let weatherListCell = WeatherListViewCell(time: utcTimeConvertor.convertingUTCtime(data.current.dt).curretTime(data.timezone_offset),
                                                   state: (data.timezone.firstIndex(of: "/") != nil) ? String(data.timezone.split(separator: "/")[1]) : data.timezone,
-                                                  currentTempC: "\(temperature: Temperature(kelvin: data.current.temp).text)")
+                                                  currentTempC: "\(temperature: Temperature(kelvin: data.current.temp).text)",
+                                                  backgrounTime: utcTimeConvertor.convertingUTCtime(data.current.dt).timeForBackground(data.timezone_offset))
         return weatherListCell
     }
     
@@ -102,7 +103,7 @@ class WeatherCellDataMaker {
          if data.current.dt > data.current.sunrise {
                 return data.daily[1].sunrise
                 } else {
-                    return data.current.sunrise ?? 0
+                    return data.current.sunrise
                 }
         case "sunset":
          if data.current.dt > data.current.sunset {

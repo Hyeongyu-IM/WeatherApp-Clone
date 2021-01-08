@@ -85,7 +85,10 @@ extension LocationListViewController: UITableViewDataSource {
 extension LocationListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print( "현재 인덱스가 클릭되었습니다 \(indexPath)" )
-        self.delegate?.userDidSelectLocation(at: indexPath.row)
+        let time = self.listViewModel.locationList.value?[indexPath.row].backgrounTime ?? "0"
+        let image = UIColor(patternImage: UIImage(named: ImageBackgroundType(Int(time) ?? 0).rawValue)!)
+        self.delegate?.userDidSelectLocation(at: indexPath.row,
+                                             image: image)
         self.dismiss(animated: true, completion: nil)
     }
     

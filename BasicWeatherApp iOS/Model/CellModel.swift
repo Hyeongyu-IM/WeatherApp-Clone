@@ -51,5 +51,6 @@ struct WeatherListViewCell {
     let time: String
     let state: String
     let currentTempC: String
+    let backgrounTime: String
 }
 

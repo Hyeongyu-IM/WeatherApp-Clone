@@ -13,13 +13,13 @@ class ListViewTableViewCell: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var stateNameLabel: UILabel!
     @IBOutlet weak var currentTempLabel: UILabel!
-//    var background: UIColor = .clear
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
-//        self.backgroundColor = background
-//        print("self.backgroundColor \(self.backgroundColor)")
     }
+    
+    var background: UIColor = .clear
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -30,15 +30,15 @@ class ListViewTableViewCell: UITableViewCell {
 //        self.stateNameLabel.text = String(weatherItem.state.split(separator: "/")[1])
         self.stateNameLabel.text = weatherItem.state
         self.currentTempLabel.text = weatherItem.currentTempC
-        self.backgroundColor = getbackgroundImage(weatherItem.time)
+        self.backgroundColor = getbackgroundImage(weatherItem.backgrounTime)
         print("background--> \(self.backgroundColor)")
     }
     
-    func getbackgroundImage(_ time: String) -> UIColor {
-        let time = Int(time.map {String($0)}[3])!
-        let colorName: String = ImageBackgroundType(time).rawValue
+    private func getbackgroundImage(_ time: String) -> UIColor {
+        let colorName: String = ImageBackgroundType(Int(time) ?? 0).rawValue
         let image = UIImage(named: colorName)!
         let color = UIColor(patternImage: image)
+        self.background = color
         return color
     }
     

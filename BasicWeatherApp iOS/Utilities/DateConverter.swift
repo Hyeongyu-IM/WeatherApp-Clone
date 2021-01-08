@@ -9,16 +9,23 @@ import Foundation
 
 class DateConverter {
     
-    func convertDateFromUTC(string: String, timezone: Int) -> Date {
-        let utcDate = convertDate(from: string)
-        return utcDate.addingTimeInterval(Double(timezone))
+    func convertingUTCtime(_ dt: Int) -> Date {
+        let timeInterval = TimeInterval(dt)
+        let utcTime = Date(timeIntervalSince1970: timeInterval)
+        return utcTime
     }
     
-    private func convertDate(from string: String) -> Date {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        return formatter.date(from: string) ?? Date()
-    }
+//    func convertDateFromUTC(_ utc: String,_ timezone: Int) -> Date {
+//        let utcDate = Date(timeIntervalSince1970: TimeInterval(Int(utc)!))
+//        return convertDate(from: utcDate)
+//    }
+//
+//    private func convertDate(from date: Date) -> Date {
+//        let formatter = DateFormatter()
+//        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+//        formatter.timeZone = TimeZone(secondsFromGMT: timezone)
+//        return formatter.date(from: "\(date)") ?? Date()
+//    }
 }
     
 

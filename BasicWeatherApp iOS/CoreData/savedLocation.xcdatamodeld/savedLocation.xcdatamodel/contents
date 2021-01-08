@@ -6,12 +6,13 @@
         <attribute name="stateName" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="String"/>
     </entity>
     <entity name="ListViewData" representedClassName="ListViewData" syncable="YES" codeGenerationType="class">
+        <attribute name="backgrounTime" optional="YES" attributeType="String"/>
         <attribute name="stateName" optional="YES" attributeType="String"/>
         <attribute name="temperature" optional="YES" attributeType="String"/>
         <attribute name="time" optional="YES" attributeType="String"/>
     </entity>
     <elements>
         <element name="DataLocation" positionX="-63" positionY="-18" width="128" height="88"/>
-        <element name="ListViewData" positionX="-208.8984375" positionY="-16.1953125" width="128" height="88"/>
+        <element name="ListViewData" positionX="-208.8984375" positionY="-16.1953125" width="128" height="103"/>
     </elements>
 </model>

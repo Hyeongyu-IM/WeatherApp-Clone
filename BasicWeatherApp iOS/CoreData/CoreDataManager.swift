@@ -36,7 +36,7 @@ class CoreDataManager {
         var models = [WeatherListViewCell]()
         do {
             if let result: [ListViewData] = try context?.fetch(locationListfetchRequest) as? [ListViewData] {
-                models = result.map { WeatherListViewCell(time: $0.time ?? "" , state: $0.stateName ?? "", currentTempC: $0.temperature ?? "") }
+                models = result.map { WeatherListViewCell(time: $0.time ?? "" , state: $0.stateName ?? "", currentTempC: $0.temperature ?? "", backgrounTime: $0.backgrounTime ?? "") }
                }
            } catch let error as NSError {
                print("Could not fetch: \(error), \(error.userInfo)")
@@ -102,6 +102,7 @@ class CoreDataManager {
             cell.stateName = cellData.state
             cell.temperature = cellData.currentTempC
             cell.time = cellData.time
+            cell.backgrounTime = cellData.backgrounTime
         } catch {
             print("Failed")
         }

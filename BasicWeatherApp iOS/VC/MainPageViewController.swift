@@ -198,7 +198,7 @@ extension MainPageViewController: LocationManagerDelegate {
 }
 
 extension MainPageViewController: LocationListViewDelegate {
-    func userDidSelectLocation(at index: Int) {
+    func userDidSelectLocation(at index: Int, image: UIColor) {
         guard let mainTableViewController = mainTableViewController(at: index) as? MainTableViewController else {
             print(CreationError.toWeatherViewController)
             return
@@ -206,6 +206,7 @@ extension MainPageViewController: LocationListViewDelegate {
         self.setViewControllers([mainTableViewController], direction: .forward, animated: false, completion: nil)
         self.pageControl.currentPage = index
         self.lastViewedPageIndex = index
+        self.view.backgroundColor = image
     }
     
     func userAdd(newLocation: Location) {

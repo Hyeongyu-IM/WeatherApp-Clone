@@ -5,10 +5,10 @@
 //  Created by 임현규 on 2020/12/31.
 //
 
-import Foundation
+import UIKit
 
 protocol LocationListViewDelegate: AnyObject {
-    func userDidSelectLocation(at index: Int)
+    func userDidSelectLocation(at index: Int,image: UIColor)
     func userAdd(newLocation: Location)
     func userDeleteLocation(at index: Int)
 }

@@ -31,7 +31,10 @@ class WeatherListViewModel {
     func convertLocationToCellData(_ location: Location) {
         weatherAPI.getWeatherInfo(location) { [weak self] (data, error)  in
             guard let data = data, error == nil else { return }
-            let cellData = WeatherListViewCell(time: self!.utcTimeConvertor.convertDateFromUTC(string: String(data.current.dt), timezone: data.timezone_offset).dtToTimeWithLetter() ,state: location.name!, currentTempC: "\(temperature: Temperature(kelvin: data.current.temp).text)")
+            let cellData = WeatherListViewCell(time: self!.utcTimeConvertor.convertingUTCtime(data.current.dt).dtToTimeWithLetter(data.timezone_offset),
+                                               state: location.name!,
+                                               currentTempC: "\(temperature: Temperature(kelvin: data.current.temp).text)",
+                                               backgrounTime: self!.utcTimeConvertor.convertingUTCtime(data.current.dt).timeForBackground(data.timezone_offset))
             self!.locationList.value?.append(cellData)
         }
     }
