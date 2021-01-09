@@ -13,13 +13,7 @@ class MainTableViewController: UIViewController {
     var index = 0
     
     @IBOutlet weak var mainTableView: UITableView!
-    
-//    static func instance() -> MainTableViewController? {
-//        return UIStoryboard(
-//            name: "Main",
-//            bundle: nil).instantiateViewController(
-//            identifier: "MainTableViewController") as? MainTableViewController
-//    }
+    @IBOutlet weak var mainTableViewTopConstrain: NSLayoutConstraint!
     
     weak var delegate: WeatherListCellDelegate?
     
@@ -28,31 +22,18 @@ class MainTableViewController: UIViewController {
             guard let viewModel = viewModel else {
                 return
             }
-//            viewModel.location.bind { [weak self] _ in
-////                self!.mainTableView.reloadData()
-////                self!.mainTableView.reloadSections(IndexSet(2...2) , with: UITableView.RowAnimation.automatic)
-////                print("viewModel.weekendTableViewCell -->>>>\(viewModel.weekendTableViewCell)")
-//            }
             viewModel.weekendTableViewCell.bind { [weak self] _ in
                 self!.mainTableView.reloadData()
                 DispatchQueue.main.async {
                     self!.delegate?.WeatherListCellDelegate(cellData: viewModel.weatherListTableCell, index: self!.index)
                 }
-                
             }
-//            viewModel.currentLocationName.bind { [weak self] _ in
-//                self?.name = viewModel.
-//                print("viewModel.currentLocationName.value 값이 변경되었습니다 \(viewModel.currentLocationName.value)")
-//                self!.mainTableView.reloadData()
-//            }
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         registerCells()
-//        self.view.translatesAutoresizingMaskIntoConstraints = true
-        print("view did load at index \(self.index)")
         mainTableView.delegate = self
         mainTableView.dataSource = self
         mainTableView.separatorColor = .clear
@@ -150,8 +131,9 @@ extension MainTableViewController: UITableViewDataSource {
             mainTableView.reloadSections([0], with: UITableView.RowAnimation.automatic)
         } else {
             if section == 0 {
-               let headerView = CustomHeaderView.instance()
+                let headerView = CustomHeaderView.instance()
                headerView.setHeaderData(headerData)
+               headerView.backgroundConfiguration = .clear()
                return headerView
              }
         }
@@ -163,6 +145,7 @@ extension MainTableViewController: UITableViewDataSource {
         return CGFloat(380)
         }
         return 0
+//        return CGFloat.leastNormalMagnitude
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -183,17 +166,30 @@ extension MainTableViewController: UITableViewDataSource {
 }
 
 
-//extension MainTableViewController: UIScrollViewDelegate {
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        guard let headerView = Bundle.main.loadNibNamed("CustomHeaderView", owner: nil, options: nil)?.first as? CustomHeaderView else { return }
-//        let offset = scrollView.contentOffset.y
+extension MainTableViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard let headerView = self.mainTableView.headerView(forSection: 0) as? CustomHeaderView else { return }
         
-
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        guard let headerView = Bundle.main.loadNibNamed("CustomHeaderView", owner: nil, options: nil)?.first as? CustomHeaderView else { return }
-//        let offset = scrollView.contentOffset.y
-//        let changeStartOffset: CGFloat = -180
-//        let changeSpeed: CGFloat = 100
-//        headerView.tempStackView.alpha = min(1.0, (offset - changeStartOffset) / changeSpeed)
-//    }
-//}
+        let offset = scrollView.contentOffset.y
+        print("offset --> \(offset)")
+        let changeStartOffset: CGFloat = 80
+        let changeSpeed: CGFloat = 100
+        headerView.minTempLabel.alpha = min(1.0, (changeStartOffset - offset) / changeSpeed)
+        headerView.maxTempLabel.alpha = min(1.0, (changeStartOffset - offset) / changeSpeed)
+        headerView.currentTempLabel.alpha = min(1.0, (changeStartOffset - offset) / changeSpeed)
+        
+//        let headerViewMaxHeight: CGFloat = 380
+//        let headerViewMinHeight: CGFloat = 44 + UIApplication.shared.statusBarFrame.height
+//        let newHeaderViewHeight: CGFloat = mainTableViewTopConstrain.constant - offset
+        
+//        if newHeaderViewHeight > headerViewMaxHeight {
+//            mainTableViewTopConstrain.constant = headerViewMaxHeight
+//                } else if newHeaderViewHeight < headerViewMinHeight {
+//                    mainTableViewTopConstrain.constant = headerViewMinHeight
+//                } else {
+//                    mainTableViewTopConstrain.constant = newHeaderViewHeight
+//                    scrollView.contentOffset.y = 0 // block scroll view
+//                }
+    }
+        
+}

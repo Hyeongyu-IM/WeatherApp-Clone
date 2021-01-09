@@ -25,7 +25,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pD7-oA-cQI">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="790"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="840"/>
                                 <color key="separatorColor" systemColor="opaqueSeparatorColor"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
@@ -72,7 +72,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="pD7-oA-cQI" firstAttribute="width" secondItem="Tuf-76-NRa" secondAttribute="width" id="4Fr-1j-Nxg"/>
-                            <constraint firstItem="pD7-oA-cQI" firstAttribute="height" secondItem="Tuf-76-NRa" secondAttribute="height" multiplier="0.881797" id="6EX-UG-nXj"/>
+                            <constraint firstItem="pD7-oA-cQI" firstAttribute="height" secondItem="Tuf-76-NRa" secondAttribute="height" multiplier="0.881797" constant="50" id="6EX-UG-nXj"/>
                             <constraint firstItem="pD7-oA-cQI" firstAttribute="leading" secondItem="Tuf-76-NRa" secondAttribute="leading" id="QaQ-sV-kys"/>
                             <constraint firstItem="pD7-oA-cQI" firstAttribute="trailing" secondItem="Tuf-76-NRa" secondAttribute="trailing" id="abH-En-csJ"/>
                             <constraint firstItem="pD7-oA-cQI" firstAttribute="top" secondItem="Tuf-76-NRa" secondAttribute="top" id="wme-rJ-Xtg"/>
@@ -81,6 +81,7 @@
                     <value key="contentSizeForViewInPopover" type="size" width="414" height="816"/>
                     <connections>
                         <outlet property="mainTableView" destination="pD7-oA-cQI" id="cyl-Ub-vme"/>
+                        <outlet property="mainTableViewTopConstrain" destination="6EX-UG-nXj" id="WT4-cE-c9j"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F4i-NK-RkX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

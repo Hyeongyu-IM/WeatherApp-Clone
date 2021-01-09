@@ -30,7 +30,7 @@
                     </subviews>
                 </stackView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="19u-Oe-FO6">
-                    <rect key="frame" x="100" y="183" width="214" height="147"/>
+                    <rect key="frame" x="100" y="196" width="214" height="124"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  5º" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Una-OV-86H">
                             <rect key="frame" x="0.0" y="0.0" width="214" height="95.5"/>
@@ -39,7 +39,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="m7F-1U-h73">
-                            <rect key="frame" x="0.0" y="126.5" width="214" height="20.5"/>
+                            <rect key="frame" x="0.0" y="103.5" width="214" height="20.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="최고: 0º" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I7G-8x-Ov2">
                                     <rect key="frame" x="0.0" y="0.0" width="92" height="20.5"/>
@@ -69,18 +69,17 @@
             <constraints>
                 <constraint firstItem="f3J-aU-Q0e" firstAttribute="centerX" secondItem="hAL-X1-0sP" secondAttribute="centerX" id="3HU-Hi-9bI"/>
                 <constraint firstAttribute="trailing" secondItem="19u-Oe-FO6" secondAttribute="trailing" constant="100" id="5Fa-xv-pQp"/>
-                <constraint firstItem="f3J-aU-Q0e" firstAttribute="centerY" secondItem="hAL-X1-0sP" secondAttribute="centerY" constant="-80" id="7ry-TQ-AKd"/>
-                <constraint firstItem="19u-Oe-FO6" firstAttribute="top" secondItem="f3J-aU-Q0e" secondAttribute="bottom" constant="10" id="Ry7-yo-5oQ"/>
-                <constraint firstAttribute="bottom" secondItem="19u-Oe-FO6" secondAttribute="bottom" priority="750" constant="90" id="uCh-8I-YUZ"/>
+                <constraint firstItem="f3J-aU-Q0e" firstAttribute="top" secondItem="hAL-X1-0sP" secondAttribute="top" priority="750" constant="87" id="76O-wS-6hh"/>
+                <constraint firstAttribute="bottom" secondItem="19u-Oe-FO6" secondAttribute="bottom" constant="100" id="uCh-8I-YUZ"/>
                 <constraint firstItem="19u-Oe-FO6" firstAttribute="leading" secondItem="hAL-X1-0sP" secondAttribute="leading" constant="100" id="w3f-ih-Gk0"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="cityNameCenterY" destination="7ry-TQ-AKd" id="vA2-qG-D0R"/>
                 <outlet property="currentTempLabel" destination="Una-OV-86H" id="Cfg-Ou-AmX"/>
                 <outlet property="descriptionLabel" destination="pZ3-be-p33" id="Pdu-HE-xfC"/>
                 <outlet property="maxTempLabel" destination="I7G-8x-Ov2" id="MxI-U8-okA"/>
                 <outlet property="minTempLabel" destination="lHa-z7-Eoy" id="2xx-ie-jey"/>
+                <outlet property="stackViewTopAnchor" destination="76O-wS-6hh" id="abg-cu-bgu"/>
                 <outlet property="stateLabel" destination="Xrg-hr-rgc" id="o4p-9e-U7q"/>
                 <outlet property="tempStackView" destination="19u-Oe-FO6" id="7Xe-fx-cUF"/>
             </connections>

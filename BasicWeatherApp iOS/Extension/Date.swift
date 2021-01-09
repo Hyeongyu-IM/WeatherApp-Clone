@@ -13,6 +13,7 @@ extension Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEEE"
         dateFormatter.timeZone = TimeZone(secondsFromGMT: timezone)
+        dateFormatter.locale = Locale(identifier: "ko-kr")
         return dateFormatter.string(from: self)
     }
     
@@ -20,6 +21,7 @@ extension Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "a h시"
         dateFormatter.timeZone = TimeZone(secondsFromGMT: timezone)
+        dateFormatter.locale = Locale(identifier: "ko-kr")
         return dateFormatter.string(from: self)
     }
     
@@ -27,6 +29,7 @@ extension Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "a h:m"
         dateFormatter.timeZone = TimeZone(secondsFromGMT: timezone)
+        dateFormatter.locale = Locale(identifier: "ko-kr")
         return dateFormatter.string(from: self)
     }
     
@@ -34,6 +37,7 @@ extension Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "H"
         dateFormatter.timeZone = TimeZone(secondsFromGMT: timezone)
+        dateFormatter.locale = Locale(identifier: "ko-kr")
         return dateFormatter.string(from: self)
     }
 //    // 요일표시 포맷

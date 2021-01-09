@@ -7,9 +7,9 @@
 
 import UIKit
 
-class CustomHeaderView: UIView {
+class CustomHeaderView: UITableViewHeaderFooterView {
 
-    @IBOutlet weak var cityNameCenterY: NSLayoutConstraint!
+    @IBOutlet weak var stackViewTopAnchor: NSLayoutConstraint!
     @IBOutlet weak var tempStackView: UIStackView!
     
     @IBOutlet weak var stateLabel: UILabel!
