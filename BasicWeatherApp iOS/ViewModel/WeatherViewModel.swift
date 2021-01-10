@@ -54,7 +54,6 @@ import UIKit
     func update(_ weatherInfo: WeatherInfo) {
         if self.location.value?.name == "" {
             self.location.value?.name = weatherInfo.timezone
-            print("self.location.value?.name \(self.location.value?.name)")
         }
         let weatherCellDataMaker = WeatherCellDataMaker(data: weatherInfo)
         self.weatherDescription = "오늘: 현재 날씨 청명함, 기온은 5º이며 오늘 예상 최고 기온은 10º입니다"

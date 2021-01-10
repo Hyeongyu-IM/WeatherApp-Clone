@@ -25,7 +25,7 @@ class Temperature {
     }
     
     var toFahrenheit: Int {
-        let convertedValue = (kelvinValue - 273.15) * 9/5 + 32
+        let convertedValue = kelvinValue * 9/5 - 459.67
         return Int(convertedValue)
     }
 }

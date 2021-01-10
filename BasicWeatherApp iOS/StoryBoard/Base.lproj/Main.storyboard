@@ -24,8 +24,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pD7-oA-cQI">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="840"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pD7-oA-cQI">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="830"/>
+                                <viewLayoutGuide key="contentLayoutGuide" id="ufl-8e-WQo"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="ep9-AY-Nbz"/>
                                 <color key="separatorColor" systemColor="opaqueSeparatorColor"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
@@ -47,7 +49,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="linkcell" textLabel="eAz-yf-Skm" style="IBUITableViewCellStyleDefault" id="8c8-1R-Y3D">
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="linkcell" textLabel="eAz-yf-Skm" style="IBUITableViewCellStyleDefault" id="8c8-1R-Y3D">
                                         <rect key="frame" x="0.0" y="71.5" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8c8-1R-Y3D" id="hGZ-gs-SgW">
@@ -72,7 +74,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="pD7-oA-cQI" firstAttribute="width" secondItem="Tuf-76-NRa" secondAttribute="width" id="4Fr-1j-Nxg"/>
-                            <constraint firstItem="pD7-oA-cQI" firstAttribute="height" secondItem="Tuf-76-NRa" secondAttribute="height" multiplier="0.881797" constant="50" id="6EX-UG-nXj"/>
+                            <constraint firstItem="pD7-oA-cQI" firstAttribute="height" secondItem="Tuf-76-NRa" secondAttribute="height" multiplier="0.881797" constant="40" id="6EX-UG-nXj"/>
                             <constraint firstItem="pD7-oA-cQI" firstAttribute="leading" secondItem="Tuf-76-NRa" secondAttribute="leading" id="QaQ-sV-kys"/>
                             <constraint firstItem="pD7-oA-cQI" firstAttribute="trailing" secondItem="Tuf-76-NRa" secondAttribute="trailing" id="abH-En-csJ"/>
                             <constraint firstItem="pD7-oA-cQI" firstAttribute="top" secondItem="Tuf-76-NRa" secondAttribute="top" id="wme-rJ-Xtg"/>

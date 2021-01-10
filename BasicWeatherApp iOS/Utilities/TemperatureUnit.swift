@@ -20,7 +20,8 @@ static let shared = TemperatureUnit()
     var unit: Unit
     
     init() {
-        let bool = true
+        let bool = CoreDataManager.getCurrentTempBool()
+        print(bool)
         self.unit = Unit(bool: bool)
     }
     

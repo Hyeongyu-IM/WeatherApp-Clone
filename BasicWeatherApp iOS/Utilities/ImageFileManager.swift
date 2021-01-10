@@ -11,9 +11,11 @@ import Alamofire
 class ImageFileManager {
     let fileManager = FileManager.default
     
+    weak var delegate : ImageDownloadCompleteDelegate?
+    
     let iconsName: [String] = ["01d", "02d", "03d", "04d", "09d", "10d", "11d", "13d", "50d", "01n", "02n", "03n", "04n", "09n", "10n", "11n", "13n", "50n" ]
     
-    func saveImage(_ image: UIImage,_ name: String) {
+    func saveImage(_ image: UIImage,_ name: String, completion: @escaping () -> Void) {
         let url = "http://openweathermap.org/img/wn/\(name)@2x.png"
         
         guard let path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first else { return }
@@ -25,6 +27,7 @@ class ImageFileManager {
             fileManager.createFile(atPath: filePath.path,
                                    contents: image.pngData(),
                                    attributes: nil)
+        completion()
         }
     }
     
@@ -61,7 +64,7 @@ class ImageFileManager {
         guard let image = weatherInfo.daily.first?.weather.first?.icon else{ return }
         if checkingImagefile(image) {
         } else {
-                saveAllWeatherIcon(iconsName)
+            saveAllWeatherIcon(iconsName)
         }
     }
     
@@ -72,7 +75,6 @@ class ImageFileManager {
                 .downloadProgress { progress in
                     print("Download Progress: \(progress.fractionCompleted)")
                 }.response { response in
-                    debugPrint(response)
                     if response.error == nil, let imagePath = response.fileURL?.path {
                         let image = UIImage(contentsOfFile: imagePath)
                         completion(image, name, nil)
@@ -87,7 +89,9 @@ class ImageFileManager {
         iconNameList.forEach {
             downloadWeatherIcon($0) { (image, name, error) in
                 guard let image = image else { return }
-                self.saveImage(image, name)
+                self.saveImage(image, name)  { [self] in
+                    delegate?.ImageDownloadCompleteDelegate()
+                    }
                 }
             }
         }

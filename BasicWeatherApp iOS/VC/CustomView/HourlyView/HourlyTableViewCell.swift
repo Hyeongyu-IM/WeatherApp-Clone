@@ -43,7 +43,6 @@ extension HourlyTableViewCell: UICollectionViewDelegate {
 
 extension HourlyTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        print("MainTableViewController.controllerIndex \(MainTableViewController.controllerIndex) 콜렉션뷰에서 테스트")
         return hourDatas.count
     }
     

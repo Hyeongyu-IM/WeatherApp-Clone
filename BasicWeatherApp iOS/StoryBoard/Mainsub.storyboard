@@ -20,18 +20,17 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u5W-zR-kNt">
                                 <rect key="frame" x="0.0" y="813" width="414" height="83"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dJc-gC-VJJ">
-                                        <rect key="frame" x="8" y="8" width="54" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
-                                        <state key="normal" title="℃ / ℉">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dJc-gC-VJJ">
+                                        <rect key="frame" x="8" y="8" width="71" height="34"/>
+                                        <state key="normal" image="C">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="tempChangeBtnTouched:" destination="6a5-wS-6rD" eventType="touchUpInside" id="gZ9-EB-1i1"/>
+                                            <action selector="tempBtnTouched:" destination="6a5-wS-6rD" eventType="touchUpInside" id="tYu-Xu-2c5"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w1g-HO-Ree">
-                                        <rect key="frame" x="373" y="12" width="20" height="22"/>
+                                        <rect key="frame" x="364" y="12" width="20" height="22"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" image="magnifyingglass" catalog="system"/>
                                         <connections>
@@ -39,23 +38,26 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pX5-I8-Ov7">
-                                        <rect key="frame" x="189" y="9" width="35" height="35"/>
+                                        <rect key="frame" x="189.5" y="9" width="35" height="35"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                         <state key="normal">
                                             <imageReference key="image" image="weatherChannelLogo" symbolScale="default"/>
                                         </state>
+                                        <connections>
+                                            <action selector="wepIconTouched:" destination="6a5-wS-6rD" eventType="touchUpInside" id="1sa-9q-HW8"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="83" id="0h7-68-Dde"/>
-                                    <constraint firstAttribute="trailing" secondItem="w1g-HO-Ree" secondAttribute="trailing" constant="21" id="1WO-IP-TCU"/>
+                                    <constraint firstAttribute="trailing" secondItem="w1g-HO-Ree" secondAttribute="trailing" constant="30" id="1WO-IP-TCU"/>
+                                    <constraint firstItem="pX5-I8-Ov7" firstAttribute="centerX" secondItem="u5W-zR-kNt" secondAttribute="centerX" id="7ao-vx-PBj"/>
                                     <constraint firstAttribute="width" constant="414" id="91u-jq-QTD"/>
                                     <constraint firstAttribute="bottom" secondItem="w1g-HO-Ree" secondAttribute="bottom" constant="49" id="FBh-xa-hV4"/>
+                                    <constraint firstAttribute="bottom" secondItem="pX5-I8-Ov7" secondAttribute="bottom" constant="39" id="KFP-xW-f2f"/>
                                     <constraint firstItem="dJc-gC-VJJ" firstAttribute="top" secondItem="u5W-zR-kNt" secondAttribute="top" constant="8" id="UZT-eV-rpz"/>
-                                    <constraint firstItem="pX5-I8-Ov7" firstAttribute="centerY" secondItem="dJc-gC-VJJ" secondAttribute="centerY" constant="1.5" id="aiq-RR-5yi"/>
                                     <constraint firstAttribute="bottom" secondItem="dJc-gC-VJJ" secondAttribute="bottom" constant="41" id="b5W-Yj-4wl"/>
-                                    <constraint firstItem="pX5-I8-Ov7" firstAttribute="leading" secondItem="dJc-gC-VJJ" secondAttribute="trailing" constant="127" id="bfh-5l-3Xr"/>
                                     <constraint firstItem="w1g-HO-Ree" firstAttribute="top" secondItem="u5W-zR-kNt" secondAttribute="top" constant="12" id="h8E-8p-fwn"/>
                                     <constraint firstItem="dJc-gC-VJJ" firstAttribute="leading" secondItem="u5W-zR-kNt" secondAttribute="leading" constant="8" id="rTv-Nl-tSN"/>
                                 </constraints>
@@ -79,7 +81,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="tempToggleBtn" destination="dJc-gC-VJJ" id="a5s-iT-Yoa"/>
+                        <outlet property="tempButton" destination="dJc-gC-VJJ" id="xMf-4I-xin"/>
                         <outlet property="weatherListView" destination="zYP-Oq-7w0" id="lKC-oi-0Tw"/>
                     </connections>
                 </viewController>
@@ -157,6 +159,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="C" width="71" height="20"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="weatherChannelLogo" width="35" height="35"/>
         <systemColor name="systemBackgroundColor">

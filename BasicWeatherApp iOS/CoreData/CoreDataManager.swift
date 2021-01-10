@@ -12,12 +12,28 @@ class CoreDataManager {
     
     let dataLocationModelName: String = "DataLocation"
     let listViewDataModelName: String = "ListViewData"
+    let tempBoolModelName: String = "TempBool"
     private let appDelegate: AppDelegate? = UIApplication.shared.delegate as? AppDelegate
     lazy var context = appDelegate?.persistentContainer.viewContext
     private let dataFetchRequest = NSFetchRequest<NSManagedObject>(entityName: "DataLocation")
     private let locationListfetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ListViewData")
     
-    // 저장된 데이터 받아오기
+    static func getCurrentTempBool() -> Bool {
+        let appDelegate: AppDelegate? = UIApplication.shared.delegate as? AppDelegate
+        let context = appDelegate?.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "TempBool")
+        
+        do {
+            if let result: [TempBool] = try context?.fetch(fetchRequest) as? [TempBool] {
+                return result.first!.tempBool
+               }
+           } catch let error as NSError {
+               print("Could not fetch: \(error), \(error.userInfo)")
+           }
+        return true
+    }
+    
+    // 저장된 지역정보를 가져옵니다
     func getDataLocationList() -> [Location] {
            var models = [Location]()
 
@@ -28,10 +44,11 @@ class CoreDataManager {
                } catch let error as NSError {
                    print("Could not fetch: \(error), \(error.userInfo)")
                }
-//            print("models 입니다 \(models)")
+        print(models)
         return models
         }
     
+    // 리스트 뷰 데이터를 가져옵니다
     func getListViewData() -> [WeatherListViewCell] {
         var models = [WeatherListViewCell]()
         do {
@@ -43,6 +60,35 @@ class CoreDataManager {
            }
             print("models 입니다 \(models)")
     return models
+    }
+    
+    // 온도Boolen값을 셋팅합니다
+    func settingTempBool() {
+        let entity = NSEntityDescription.entity(forEntityName: tempBoolModelName, in: context!)
+        let filter = filteredTempBool(filterName: "temp")
+        
+        do {
+            let datas = try context!.fetch(filter) as! [NSManagedObject]
+            var cell: TempBool! = nil
+            if datas.count == 0 {
+                cell = NSManagedObject(entity: entity!, insertInto: context!) as? TempBool
+                cell.filterName = "temp"
+                cell.tempBool = true
+                do {
+                    try context?.save()
+                    print("Save Succes")
+                } catch {
+                    print("Failed To Saving")
+                }
+                return
+            } else {
+                cell = datas.first as? TempBool
+                return
+            }
+        } catch {
+            print("Failed")
+        }
+        return
     }
 
     // saveLocation
@@ -71,20 +117,7 @@ class CoreDataManager {
         } catch {
             print("Failed To Saving")
         }
-//
-//        let object = NSEntityDescription.insertNewObject(forEntityName: dataLocationModelName, into: context!)
-//        object.setValue(location.latitude, forKey: "latitude")
-//        object.setValue(location.longitude, forKey: "longitude")
-//        object.setValue(location.name, forKey: "stateName")
-//
-//        do{
-//            try context?.save()
-//            return
-//        } catch {
-//            context?.rollback()
-//            }
-//        return
-        }
+    }
     
     // saveListViewData
     func saveOrUpdateListViewData(_ cellData: WeatherListViewCell) {
@@ -113,23 +146,33 @@ class CoreDataManager {
         } catch {
             print("Failed To Saving")
         }
+    }
+    
+    func toggleTempBool() {
+        let entity = NSEntityDescription.entity(forEntityName: tempBoolModelName, in: context!)
+        let filter = filteredTempBool(filterName: "temp")
         
-//        let object = NSEntityDescription.insertNewObject(forEntityName: listViewDataModelName, into: context!)
-//        object.setValue(cellData.dt, forKey: "time")
-//        object.setValue(cellData.currentTempC, forKey: "temperature")
-//        object.setValue(cellData.state, forKey: "stateName")
-//
-//        do{
-//            try context?.save()
-//            print("데이터 저장성공")
-//            return
-//        } catch {
-//            context?.rollback()
-//            print("데이터 저장실패")
-//            }
-//        print("데이터 저장실패")
-//        return
+        do {
+            let datas = try context!.fetch(filter) as! [NSManagedObject]
+            var cell: TempBool! = nil
+            if datas.count == 0 {
+                cell = NSManagedObject(entity: entity!, insertInto: context!) as? TempBool
+            } else {
+                cell = datas.first as? TempBool
+            }
+            cell.tempBool.toggle()
+            cell.filterName = "temp"
+        } catch {
+            print("Failed")
         }
+        
+        do {
+            try context?.save()
+            print("Save Succes")
+        } catch {
+            print("Failed To Saving")
+        }
+    }
     
     // deleteLocation 셀 지울때 메서드 호출 ( latitude 매개변수 )
     func deleteDataLocation(stateName: String, entityName: String) {
@@ -224,6 +267,12 @@ extension CoreDataManager {
     fileprivate func filteredListLocationRequest(stateName: String) -> NSFetchRequest<NSFetchRequestResult> {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest<NSFetchRequestResult>(entityName: listViewDataModelName)
         fetchRequest.predicate = NSPredicate(format: "stateName = %@", NSString(string: stateName))
+        return fetchRequest
+    }
+    
+    fileprivate func filteredTempBool(filterName: String) -> NSFetchRequest<NSFetchRequestResult> {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest<NSFetchRequestResult>(entityName: tempBoolModelName)
+        fetchRequest.predicate = NSPredicate(format: "filterName = %@", NSString(string: filterName))
         return fetchRequest
     }
 }

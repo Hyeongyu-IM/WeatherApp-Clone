@@ -13,4 +13,7 @@ struct UnitSymbol {
     static let forPressure = "hPa"
     static let forTemperature = "º"
     static let forHumidity = "%"
+    static let forVisible = "km"
+    static let forRain = "cm"
+    static let forSnow = "%"
 }

@@ -31,7 +31,6 @@ class ListViewTableViewCell: UITableViewCell {
         self.stateNameLabel.text = weatherItem.state
         self.currentTempLabel.text = weatherItem.currentTempC
         self.backgroundColor = getbackgroundImage(weatherItem.backgrounTime)
-        print("background--> \(self.backgroundColor)")
     }
     
     private func getbackgroundImage(_ time: String) -> UIColor {

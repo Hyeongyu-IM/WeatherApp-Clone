@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:TempBool+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:TempBool+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
       location = "group:ListViewData+CoreDataClass.swift">
    </FileRef>
    <FileRef

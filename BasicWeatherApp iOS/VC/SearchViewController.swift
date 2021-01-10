@@ -65,15 +65,11 @@ extension SearchViewController: GMSAutocompleteTableDataSourceDelegate, UISearch
       }
 
       func tableDataSource(_ tableDataSource: GMSAutocompleteTableDataSource, didAutocompleteWith place: GMSPlace) {
-        // Do something with the selected place.
             self.delegate?.userSelected(newLocation: Location(name: place.name, latitude: place.coordinate.latitude, longitude: place.coordinate.longitude))
             self.dismiss(animated: true, completion: nil)
-        
-        print("저장된 로케이션 정보입니다 --> \(Location(name: place.name, latitude: place.coordinate.latitude, longitude: place.coordinate.longitude))")
       }
 
       func tableDataSource(_ tableDataSource: GMSAutocompleteTableDataSource, didFailAutocompleteWithError error: Error) {
-        // Handle the error.
         print("Error: \(error.localizedDescription)")
       }
 
@@ -82,7 +78,6 @@ extension SearchViewController: GMSAutocompleteTableDataSourceDelegate, UISearch
       }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        // Update the GMSAutocompleteTableDataSource with the search text.
         tableDataSource.sourceTextHasChanged(searchText)
       }
 }

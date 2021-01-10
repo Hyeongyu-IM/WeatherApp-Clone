@@ -60,6 +60,7 @@
 		2CF75A13257E031600BA6044 /* binder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF75A12257E031600BA6044 /* binder.swift */; };
 		2CF75A16257E0DEB00BA6044 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF75A15257E0DEB00BA6044 /* WeatherViewModel.swift */; };
 		2CF75A1E257E0E2400BA6044 /* LocationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF75A1D257E0E2400BA6044 /* LocationListViewController.swift */; };
+		2CFAF4D925AAEC6200711B12 /* ImageDownloadCompleteDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFAF4D825AAEC6200711B12 /* ImageDownloadCompleteDelegate.swift */; };
 		3FD874830FADF140D9E28B30 /* libPods-BasicWeatherApp iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C1DB6CBDDA7E6EC5697960 /* libPods-BasicWeatherApp iOS.a */; };
 /* End PBXBuildFile section */
 
@@ -119,6 +120,7 @@
 		2CF75A12257E031600BA6044 /* binder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = binder.swift; sourceTree = "<group>"; };
 		2CF75A15257E0DEB00BA6044 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
 		2CF75A1D257E0E2400BA6044 /* LocationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListViewController.swift; sourceTree = "<group>"; };
+		2CFAF4D825AAEC6200711B12 /* ImageDownloadCompleteDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadCompleteDelegate.swift; sourceTree = "<group>"; };
 		42C1DB6CBDDA7E6EC5697960 /* libPods-BasicWeatherApp iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BasicWeatherApp iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46A4A35E4AE6BA248D6BDF9F /* Pods-BasicWeatherApp iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasicWeatherApp iOS.release.xcconfig"; path = "Target Support Files/Pods-BasicWeatherApp iOS/Pods-BasicWeatherApp iOS.release.xcconfig"; sourceTree = "<group>"; };
 		800DD2BAF7853D5839AEDEB3 /* Pods-BasicWeatherApp iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasicWeatherApp iOS.debug.xcconfig"; path = "Target Support Files/Pods-BasicWeatherApp iOS/Pods-BasicWeatherApp iOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				2CE0E64D259DFDCD00E030F5 /* LocationListDelegate.swift */,
+				2CFAF4D825AAEC6200711B12 /* ImageDownloadCompleteDelegate.swift */,
 				2C6FCB0A25A5C9A800500BE3 /* WeatherListCellDelegate.swift */,
 				2CE0E650259DFDE400E030F5 /* LocationManagerDelegate.swift */,
 				2CE0E653259DFDF900E030F5 /* SearchViewDelegate.swift */,
@@ -513,6 +516,7 @@
 				2C6FCB0E25A5E92000500BE3 /* ImageBackgroundType.swift in Sources */,
 				2C768C9725A73157006B24ED /* Date.swift in Sources */,
 				2C10E0222585DDFB00AD227D /* WeatherAPI.swift in Sources */,
+				2CFAF4D925AAEC6200711B12 /* ImageDownloadCompleteDelegate.swift in Sources */,
 				2CE0E65A259DFE6200E030F5 /* TemperatureUnit.swift in Sources */,
 				2C1569482593285A00C77AAC /* ImageFileManager.swift in Sources */,
 				2CE0E663259DFE9000E030F5 /* WeatherAPIInfo.swift in Sources */,

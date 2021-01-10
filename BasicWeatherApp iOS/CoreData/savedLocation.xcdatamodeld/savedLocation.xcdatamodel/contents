@@ -11,8 +11,13 @@
         <attribute name="temperature" optional="YES" attributeType="String"/>
         <attribute name="time" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="TempBool" representedClassName="TempBool" syncable="YES" codeGenerationType="class">
+        <attribute name="filterName" optional="YES" attributeType="String"/>
+        <attribute name="tempBool" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+    </entity>
     <elements>
         <element name="DataLocation" positionX="-63" positionY="-18" width="128" height="88"/>
         <element name="ListViewData" positionX="-208.8984375" positionY="-16.1953125" width="128" height="103"/>
+        <element name="TempBool" positionX="-135" positionY="9" width="128" height="73"/>
     </elements>
 </model>

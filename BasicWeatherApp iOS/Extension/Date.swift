@@ -27,7 +27,7 @@ extension Date {
     
     func curretTime(_ timezone: Int ) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "a h:m"
+        dateFormatter.dateFormat = "a h:mm"
         dateFormatter.timeZone = TimeZone(secondsFromGMT: timezone)
         dateFormatter.locale = Locale(identifier: "ko-kr")
         return dateFormatter.string(from: self)

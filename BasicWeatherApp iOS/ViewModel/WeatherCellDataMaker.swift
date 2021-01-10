@@ -32,13 +32,13 @@ class WeatherCellDataMaker {
         let currentCell = HourCell(dt: data.current.dt,
                                    time: "지금",
                                    icon: imageFileManager.loadImage("\(data.daily[0].weather[0].icon)"),
-                                   Ctemp: "\(temperature: Temperature(kelvin: data.current.temp).text)")
+                                   Ctemp: "\(temperature: Temperature(kelvin: data.current.temp))")
         
         var hourCells: [HourCell] = data.hourly.map {
             HourCell(dt: $0.dt ,
                      time: utcTimeConvertor.convertingUTCtime($0.dt).dtToTimeWithLetter(data.timezone_offset),
                      icon: imageFileManager.loadImage("\($0.weather[0].icon)"),
-                     Ctemp: "\(temperature: Temperature(kelvin: $0.temp).text)")
+                     Ctemp: "\(temperature: Temperature(kelvin: $0.temp))")
         }
         hourCells.append(sunsetCell)
         hourCells.append(sunriseCell)
@@ -55,8 +55,8 @@ class WeatherCellDataMaker {
         let weekendCells = data.daily.map {
             WeekendCell(weekend: utcTimeConvertor.convertingUTCtime($0.dt).dtToWeekend(data.timezone_offset),
                              icon: imageFileManager.loadImage("\($0.weather[0].icon)"),
-                             minCTemp: "\(temperature: Temperature(kelvin: $0.temp.min).text)",
-                             maxCTemp: "\(temperature: Temperature(kelvin: $0.temp.max).text)",
+                             minCTemp: "\(temperature: Temperature(kelvin: $0.temp.min))",
+                             maxCTemp: "\(temperature: Temperature(kelvin: $0.temp.max))",
                              percent: "")
         }
         return weekendCells
@@ -66,25 +66,25 @@ class WeatherCellDataMaker {
     func getdetailDataCell() -> DetailCell {
         let detailCell: DetailCell = DetailCell(sunrise: utcTimeConvertor.convertingUTCtime(data.current.sunrise).curretTime(data.timezone_offset),
                                                 sunset: utcTimeConvertor.convertingUTCtime(data.current.sunset).curretTime(data.timezone_offset),
-                                                snow: String(data.current.snow?.lastHour ?? 0),
+                                                snow: "\(forsnow: data.current.snow?.lastHour ?? 0)",
                                                 humidity: "\(humidity: data.current.humidity)",
                                                 wind: "\(wind: data.current.wind_speed)",
-                                                feelsLike: String(data.current.feels_like),
-                                                rain: String(data.current.rain?.lastHour ?? 0),
+                                                feelsLike: "\(temperature: Temperature(kelvin: data.current.feels_like))",
+                                                rain: "\(rain: data.current.rain?.lastHour ?? 0)",
                                                 pressure:"\(pressure: data.current.pressure)",
-                                                visibility: String(data.current.visibility),
+                                                visibility: "\(visible: data.current.visibility)",
                                                 uvi: String(data.current.uvi))
         return detailCell
     }
     
     //MARK: - HeaderCell DataConfig
     func getheaderDataCell() -> HeaderCell {
-        let currentTemp = Temperature(kelvin: data.current.temp).text.first == "-" ? "\(temperature: Temperature(kelvin: data.current.temp).text)" : "  \(temperature: Temperature(kelvin: data.current.temp).text)"
+        let currentTemp = Temperature(kelvin: data.current.temp).text.first == "-" ? "\(temperature: Temperature(kelvin: data.current.temp))" : "  \(temperature: Temperature(kelvin: data.current.temp))"
         let headerCell: HeaderCell = HeaderCell(state: (data.timezone.firstIndex(of: "/") != nil) ? String(data.timezone.split(separator: "/")[1]) : data.timezone ,
                                                 description: String(data.current.weather.first?.description ?? "" ),
                                                 currentTemp: currentTemp,
-                                                minTemp: "최저:\(temperature: Temperature(kelvin: data.daily[0].temp.min).text)" ,
-                                                maxTemp: "최고:\(temperature: Temperature(kelvin: data.daily[0].temp.max).text)")
+                                                minTemp: "최저:\(temperature: Temperature(kelvin: data.daily[0].temp.min))" ,
+                                                maxTemp: "최고:\(temperature: Temperature(kelvin: data.daily[0].temp.max))")
         return headerCell
     }
     
@@ -92,7 +92,7 @@ class WeatherCellDataMaker {
     func getWeatherListDataCell() -> WeatherListViewCell {
         let weatherListCell = WeatherListViewCell(time: utcTimeConvertor.convertingUTCtime(data.current.dt).curretTime(data.timezone_offset),
                                                   state: (data.timezone.firstIndex(of: "/") != nil) ? String(data.timezone.split(separator: "/")[1]) : data.timezone,
-                                                  currentTempC: "\(temperature: Temperature(kelvin: data.current.temp).text)",
+                                                  currentTempC: "\(temperature: Temperature(kelvin: data.current.temp))",
                                                   backgrounTime: utcTimeConvertor.convertingUTCtime(data.current.dt).timeForBackground(data.timezone_offset))
         return weatherListCell
     }

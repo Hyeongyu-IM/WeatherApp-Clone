@@ -8,8 +8,8 @@
 import Foundation
 
 extension String.StringInterpolation {
-    mutating func appendInterpolation(temperature value: String) {
-        appendInterpolation("\(value)\(UnitSymbol.forTemperature)")
+    mutating func appendInterpolation(temperature value: Temperature) {
+        appendInterpolation("\(value.text)\(UnitSymbol.forTemperature)")
     }
     
     mutating func appendInterpolation(pressure value: Int) {
@@ -23,4 +23,17 @@ extension String.StringInterpolation {
     mutating func appendInterpolation(humidity value: Int) {
         appendInterpolation("\(value) \(UnitSymbol.forHumidity)")
     }
+    
+    mutating func appendInterpolation(visible value: Int) {
+        appendInterpolation("\(value) \(UnitSymbol.forVisible)")
+    }
+    
+    mutating func appendInterpolation(rain value: Double) {
+        appendInterpolation("\(value) \(UnitSymbol.forRain)")
+    }
+    
+    mutating func appendInterpolation(forsnow value: Double) {
+        appendInterpolation("\(value) \(UnitSymbol.forSnow)")
+    }
 }
+

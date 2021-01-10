@@ -18,6 +18,7 @@ class MainPageViewController: UIPageViewController {
     private var locationList = [Location]() {
         didSet {
             self.pageControl.numberOfPages = locationList.count
+            self.pageControl.setIndicatorImage(UIImage.init(systemName: "location.fill"), forPage: 0)
         }
     }
     
@@ -35,18 +36,23 @@ class MainPageViewController: UIPageViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setLocationList()
+        DispatchQueue.main.async {
+            self.setLocationList()
+        }
+        coreDatas.settingTempBool()
         configPageViewController()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "night")!)
         self.locationManager.delegate = self
         self.locationManager.requestCurrentLocation()
         configSubViews()
+        
     }
     
     private func configPageViewController() {
         delegate = self
         dataSource = self
 //        self.didMove(toParent: self) //?
+        
     }
     
     private func setLocationList() {
@@ -63,7 +69,7 @@ class MainPageViewController: UIPageViewController {
     
     private func configurePageViewController(inside frame: CGRect) {
         pageControl = UIPageControl(frame: CGRect(x: 0, y: frame.maxY - 80, width: frame.maxX, height: 50))
-        self.pageControl.numberOfPages = locationList.count + 1
+        self.pageControl.numberOfPages = locationList.count
         self.pageControl.currentPage = lastViewedPageIndex
         self.pageControl.tintColor = .gray
         self.pageControl.pageIndicatorTintColor = .gray
@@ -74,7 +80,6 @@ class MainPageViewController: UIPageViewController {
     }
     
     @objc func changeCurrentPageViewController() {
-        print("tapped at \(self.pageControl.currentPage)")
         lastViewedPageIndex = self.pageControl.currentPage
         let pickedViewController = mainTableViewController(at: self.pageControl.currentPage)
         self.setViewControllers([pickedViewController], direction: .forward, animated: false, completion: nil)
@@ -90,14 +95,16 @@ class MainPageViewController: UIPageViewController {
     
     @objc func presentLocationListViewController() {
         guard let locationListViewController = subStoryBoard.instantiateViewController(withIdentifier: LocationListViewController.identifier) as? LocationListViewController else { return }
+        let currentPage = mainTableViewController(at: self.pageControl.currentPage)
         locationListViewController.listViewModel.locationList.value = coreDatas.getListViewData()
         locationListViewController.delegate = self
         locationListViewController.modalPresentationStyle = .fullScreen
+        locationListViewController.view.backgroundColor = self.view.backgroundColor
         self.present(locationListViewController, animated: true, completion: nil)
     }
     
     private func configureLinkIconButton(inside frame: CGRect) {
-        let buttonRect = CGRect(x: 10, y: frame.maxY - 70, width: 30, height: 30)
+        let buttonRect = CGRect(x: 20, y: frame.maxY - 70, width: 30, height: 30)
         let linkIconButton = UIButton(frame: buttonRect)
         linkIconButton.setImage(UIImage(named: "weatherChannelLogo"), for: .normal)
         linkIconButton.addTarget(self, action: #selector(self.presentWebpage), for: .touchUpInside)
@@ -117,18 +124,19 @@ extension MainPageViewController: UIPageViewControllerDelegate {
         }
         self.pageControl.currentPage = displayedContentViewController.index
         self.lastViewedPageIndex = displayedContentViewController.index
+        let backgroundTime = displayedContentViewController.viewModel!.weatherListTableCell.backgrounTime
+        DispatchQueue.main.async {
+            self.view.backgroundColor = UIColor(patternImage: UIImage(named: ImageBackgroundType(Int(backgroundTime) ?? 0).rawValue)!)
+        }
     }
     
 //    func presentationCount(for pageViewController: UIPageViewController) -> Int {
 //        return locationList.count
 //    }
     
-    // 페이지 뷰가 전환될때
+//     페이지 뷰가 전환될때
 //    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
-//        guard let currentView = pendingViewControllers[lastViewedPageIndex] as? MainTableViewController else { return }
-//        DispatchQueue.main.async {
-//            self.view.backgroundColor = currentView.viewModel!.backgroundImageColor
-//        }
+        
 
 //        print(pendingViewControllers)
 //        if pendingViewControllers[0] == vcArray[0] {
@@ -188,10 +196,10 @@ extension MainPageViewController: UIPageViewControllerDataSource {
 
 extension MainPageViewController: LocationManagerDelegate {
     func locationManagerDidUpdate(currentLocation: Location) {
-        print( coreDatas.getDataLocationList().count)
+        if locationList.count == 0 {
+            self.locationList.insert(currentLocation, at: 0)
+        }
         coreDatas.saveORUpdateDataLocation(currentLocation)
-        print( coreDatas.getDataLocationList().count)
-        self.locationList.insert(currentLocation, at: 0)
         let currentWeatherViewController = mainTableViewController(at: lastViewedPageIndex)
         setViewControllers([currentWeatherViewController], direction: .forward, animated: false, completion: nil)
     }
@@ -215,7 +223,6 @@ extension MainPageViewController: LocationListViewDelegate {
     }
     
     func userDeleteLocation(at deletingIndex: Int) {
-        print("page vc delete location at index \(deletingIndex)")
         if self.lastViewedPageIndex == deletingIndex {
             self.lastViewedPageIndex = 0
         }
@@ -252,52 +259,3 @@ extension MainPageViewController: LocationListViewDelegate {
         } while needChangeIndex <= locationList.count
     }
 }
-
-
-//    // 첫화면을 설정합니다.
-//    private func setupViewControllers() {
-//        guard let firstVC = vcArray.first else { return }
-//        setViewControllers([firstVC],
-//                           direction: .forward,
-//                           animated: true,
-//                           completion: nil)
-//        print("setupViewControllers 실행되었습니다" )
-//    }
-
-//extension MainPageViewController: CLLocationManagerDelegate {
-//
-//
-//    func getCurrentLocationAndName() {
-//        locationManager = CLLocationManager()
-//        locationManager.delegate = self
-//        locationManager.requestWhenInUseAuthorization()
-//        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-//        locationManager.startUpdatingLocation()
-//
-//        let coor = locationManager.location?.coordinate
-//        let cityName = currentLocationName(Double(coor?.longitude ?? 0.0), Double(coor?.latitude ?? 0.0))
-//        let location = Location(name: cityName, latitude: Double(coor?.latitude ?? 0.0), longitude: Double(coor?.longitude ?? 0.0))
-//        CoreDataManager.shared.saveLocation(latitude: Double(coor?.latitude ?? 0.0), longitude: Double(coor?.longitude ?? 0.0))
-//
-//        currentLocation = location
-//        print(#function, location)
-//    }
-//
-//    func currentLocationName(_ longitude: Double,_ latitude:Double) -> String {
-//        let findLocation = CLLocation(latitude: latitude, longitude: longitude)
-//        let geocoder = CLGeocoder()
-//        let locale = Locale(identifier: "Ko-kr")
-//        var cityname = ""
-//
-//        geocoder.reverseGeocodeLocation(findLocation, preferredLocale: locale) { (placemarks, error) in
-//            if let address: [CLPlacemark] = placemarks {
-//                if let name: String = address.last?.locality {
-//                    print(#function, cityname)
-//                    cityname = name
-//                }
-//            }
-//        }
-//
-//        return cityname
-//    }
-//}

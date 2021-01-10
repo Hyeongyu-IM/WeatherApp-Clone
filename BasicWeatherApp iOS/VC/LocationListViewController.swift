@@ -14,20 +14,39 @@ class LocationListViewController: UIViewController {
     
     weak var delegate: LocationListViewDelegate?
     
-    
     @IBOutlet weak var weatherListView: UITableView!
-    @IBOutlet weak var tempToggleBtn: UIButton!
+    @IBOutlet weak var tempButton: UIButton!
     
     var listViewModel = WeatherListViewModel()
+    var tempBtnImage = CoreDataManager.getCurrentTempBool() {
+        didSet {
+            if tempBtnImage {
+                tempButton.setImage(UIImage(named: "C"), for: .normal)
+            } else {
+                tempButton.setImage(UIImage(named: "F"), for: .normal)
+            }
+            weatherListView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.weatherListView.register(UINib(nibName: "ListViewTableViewCell", bundle: nil), forCellReuseIdentifier: ListViewTableViewCell.registerID)
         self.weatherListView.delegate = self
         self.weatherListView.dataSource = self
-        self.tempToggleBtn.isSelected = !TemperatureUnit.shared.boolValue
-        listViewModel.locationList.bind { [weak self] _ in
+        self.listViewModel.locationList.bind { [weak self] _ in
             self!.weatherListView.reloadData()
+            }
+        self.listViewModel.temperatureUnit.bind { [weak self] _ in
+            self!.weatherListView.reloadData()
+            }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let temperatureUnit = TemperatureUnit.shared.unit
+        if listViewModel.temperatureUnit.value != temperatureUnit {
+            listViewModel.temperatureUnit.value = temperatureUnit
         }
     }
     
@@ -41,9 +60,16 @@ class LocationListViewController: UIViewController {
         self.present(searchViewController, animated: true, completion: nil)
     }
     
-    @IBAction func tempChangeBtnTouched(_ sender: UIButton) {
-        TemperatureUnit.shared.setUnit(with: sender.isSelected)
+    @IBAction func tempBtnTouched(_ sender: Any) {
+        coreDatas.toggleTempBool()
+        TemperatureUnit.shared.setUnit(with: CoreDataManager.getCurrentTempBool())
+        tempBtnImage.toggle()
+        print("tempBtnImage.toggle() \(tempBtnImage)")
     }
+    @IBAction func wepIconTouched(_ sender: Any) {
+        UIApplication.shared.open(URL(string: "https://www.weather.go.kr/weather/forecast/timeseries.jsp")!, options: [:], completionHandler: nil)
+    }
+    
     
     
     
@@ -65,7 +91,6 @@ extension LocationListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let data = listViewModel.locationList.value else { return UITableViewCell()}
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ListViewTableViewCell.registerID , for: indexPath) as? ListViewTableViewCell else { return UITableViewCell() }
-        print("data[indexPath.row]-->\(data[indexPath.row])")
         cell.setWeatherData(from: data[indexPath.row])
         return cell
     }
@@ -84,7 +109,6 @@ extension LocationListViewController: UITableViewDataSource {
 
 extension LocationListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print( "현재 인덱스가 클릭되었습니다 \(indexPath)" )
         let time = self.listViewModel.locationList.value?[indexPath.row].backgrounTime ?? "0"
         let image = UIColor(patternImage: UIImage(named: ImageBackgroundType(Int(time) ?? 0).rawValue)!)
         self.delegate?.userDidSelectLocation(at: indexPath.row,
@@ -106,7 +130,6 @@ extension LocationListViewController: SearchViewDelegate {
 
 extension LocationListViewController: WeatherListCellDelegate {
     func WeatherListCellDelegate(cellData: WeatherListViewCell, index: Int) {
-        print("WeatherListCellDelegate --> 리스트뷰 델리게잇 메서드가 실행되었습니다. ")
         coreDatas.saveOrUpdateListViewData(cellData)
         listViewModel.locationList.value?[index] = cellData
     }
