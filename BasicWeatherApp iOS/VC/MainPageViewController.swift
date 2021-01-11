@@ -36,9 +36,7 @@ class MainPageViewController: UIPageViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        DispatchQueue.main.async {
-            self.setLocationList()
-        }
+        self.setLocationList()
         coreDatas.settingTempBool()
         configPageViewController()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "night")!)

@@ -175,6 +175,7 @@ class CoreDataManager {
     }
     
     // deleteLocation 셀 지울때 메서드 호출 ( latitude 매개변수 )
+    // TODO have to reFactor this code
     func deleteDataLocation(stateName: String, entityName: String) {
         let deleteRequest: NSFetchRequest<NSFetchRequestResult> = filteredListLocationRequest(stateName: stateName)
         switch entityName {
