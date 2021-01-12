@@ -1,8 +1,26 @@
 # WeatherApp-Clone
 # Project Guidelines &middot; [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/your/your-project/blob/master/LICENSE)
-> Additional information or tag line
+> 애플의 기본 날씨앱을 클론코딩 하였습니다. 100% 똑같지는 않지만 처음으로 대단위(?) 작업을 한것으로 한달여에 걸쳐 작업하였습니다. 
 
-A brief description of your project, what it is used for.
+![ezgif com-gif-maker (3)](https://user-images.githubusercontent.com/64323969/104320363-92cd2180-5525-11eb-8062-716790f6b8fb.gif)
+![ezgif com-gif-maker (4)](https://user-images.githubusercontent.com/64323969/104320379-995b9900-5525-11eb-8d11-c1e76d4225f7.gif)
+![ezgif com-gif-maker (5)](https://user-images.githubusercontent.com/64323969/104320382-99f42f80-5525-11eb-915b-c42e4b7672a1.gif)
+
+## 기능설명
+1. 사용자의 현재위치의 기상정보를 보여줍니다. 
+2. 사용자가 원하는 지역을 검색하고 추가하여 저장할수 있습니다.
+3. 섭씨 / 화씨를 선택할수 있습니다.
+4. 사용자가 설정한 온도, 지역을 앱이 꺼지더라도 저장합니다.
+
+## 설계 및 구현
+### ViewController 구성
+![스크린샷 2021-01-12 오후 11 10 04](https://user-images.githubusercontent.com/64323969/104324867-50a6de80-552b-11eb-8fd2-604832eda407.png)
+
+## 날씨 모델과 View - MVVM
+### WeatherViewController - WeatherViewModel
+![스크린샷 2021-01-12 오후 11 37 42](https://user-images.githubusercontent.com/64323969/104328458-2ce59780-552f-11eb-93b0-e04dc1c71b67.png)
+- ViewModel의 view관련 type에 Binder를 등록할 수 있도록 구현하였습니다
+ - ㅁㄴㅇㄹ
 
 ## Installing / Getting started
 
