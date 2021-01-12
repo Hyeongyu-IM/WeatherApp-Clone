@@ -11,7 +11,6 @@ class CustomHeaderView: UITableViewHeaderFooterView {
 
     @IBOutlet weak var stackViewHeightAnchor: NSLayoutConstraint!
     @IBOutlet weak var tempStackView: UIStackView!
-    
     @IBOutlet weak var stateLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var currentTempLabel: UILabel!
@@ -34,7 +33,5 @@ class CustomHeaderView: UITableViewHeaderFooterView {
         self.minTempLabel.text = headerData.minTemp
         self.maxTempLabel.text = headerData.maxTemp
     }
-    
-    
 }
 

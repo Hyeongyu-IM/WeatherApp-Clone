@@ -23,21 +23,21 @@ class WeatherCellDataMaker {
         let sunriseDT = isSunRiseOrSunSetAlreadyPast("sunrise")
         let sunsetCell = HourCell(dt: sunsetDT ,
                                   time: utcTimeConvertor.convertingUTCtime(sunsetDT).dtToTimeWithLetter(data.timezone_offset) ,
-                                  icon: UIImage(systemName: "sunset.fill")!.withTintColor(.white) ,
+                                  icon: "sunset.fill",
                                   Ctemp: "일몰")
         let sunriseCell = HourCell(dt: sunriseDT,
                                    time: utcTimeConvertor.convertingUTCtime(sunriseDT).dtToTimeWithLetter(data.timezone_offset),
-                                   icon: UIImage(systemName: "sunrise.fill")!.withTintColor(.white),
+                                   icon: "sunrise.fill",
                                    Ctemp: "일출")
         let currentCell = HourCell(dt: data.current.dt,
                                    time: "지금",
-                                   icon: imageFileManager.loadImage("\(data.daily[0].weather[0].icon)"),
+                                   icon: data.daily[0].weather[0].icon,
                                    Ctemp: "\(temperature: Temperature(kelvin: data.current.temp))")
         
         var hourCells: [HourCell] = data.hourly.map {
             HourCell(dt: $0.dt ,
                      time: utcTimeConvertor.convertingUTCtime($0.dt).dtToTimeWithLetter(data.timezone_offset),
-                     icon: imageFileManager.loadImage("\($0.weather[0].icon)"),
+                     icon: $0.weather[0].icon,
                      Ctemp: "\(temperature: Temperature(kelvin: $0.temp))")
         }
         hourCells.append(sunsetCell)
@@ -54,7 +54,7 @@ class WeatherCellDataMaker {
     func getWeekendDataCell() -> [WeekendCell] {
         let weekendCells = data.daily.map {
             WeekendCell(weekend: utcTimeConvertor.convertingUTCtime($0.dt).dtToWeekend(data.timezone_offset),
-                             icon: imageFileManager.loadImage("\($0.weather[0].icon)"),
+                             icon: $0.weather[0].icon,
                              minCTemp: "\(temperature: Temperature(kelvin: $0.temp.min))",
                              maxCTemp: "\(temperature: Temperature(kelvin: $0.temp.max))",
                              percent: "")

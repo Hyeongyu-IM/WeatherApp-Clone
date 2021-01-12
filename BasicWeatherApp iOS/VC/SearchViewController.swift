@@ -27,9 +27,10 @@ class SearchViewController: UIViewController {
         customSearchBar.delegate = self
         tableDataSource = GMSAutocompleteTableDataSource()
         tableDataSource.delegate = self
-        tableView = UITableView(frame: CGRect(x: 0, y: 105, width: self.view.frame.size.width, height: self.view.frame.size.height - 44))
-            tableView.delegate = tableDataSource
-            tableView.dataSource = tableDataSource
+        tableView = UITableView(frame: CGRect(x: 0, y: 105, width: self.view.frame.size.width,
+                                              height:self.view.frame.size.height - 44))
+        tableView.delegate = tableDataSource
+        tableView.dataSource = tableDataSource
         
         let filter = GMSAutocompleteFilter()
         filter.type = .city
@@ -50,17 +51,12 @@ class SearchViewController: UIViewController {
 
 extension SearchViewController: GMSAutocompleteTableDataSourceDelegate, UISearchBarDelegate  {
     func didUpdateAutocompletePredictions(for tableDataSource: GMSAutocompleteTableDataSource) {
-        // Turn the network activity indicator off.
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
-        // Reload table data.
         tableView.reloadData()
-      
     }
 
       func didRequestAutocompletePredictions(for tableDataSource: GMSAutocompleteTableDataSource) {
-        // Turn the network activity indicator on.
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        // Reload table data.
         tableView.reloadData()
       }
 

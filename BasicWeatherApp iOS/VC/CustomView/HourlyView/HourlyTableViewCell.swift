@@ -22,7 +22,6 @@ class HourlyTableViewCell: UITableViewCell {
         collectionView.backgroundColor = .clear
         collectionView.delegate = self
         collectionView.dataSource = self
-        
     }
     
     func registerCell() {
@@ -35,10 +34,6 @@ class HourlyTableViewCell: UITableViewCell {
         hourDatas = hourData
         collectionView.reloadData()
     }
-}
-
-extension HourlyTableViewCell: UICollectionViewDelegate {
-    
 }
 
 extension HourlyTableViewCell: UICollectionViewDataSource {

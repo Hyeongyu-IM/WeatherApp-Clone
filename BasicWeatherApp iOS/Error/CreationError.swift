@@ -25,5 +25,4 @@ enum LocationError: Error {
             return "Local search completer is unable to generate a list of search results"
         }
     }
-    
 }

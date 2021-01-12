@@ -18,7 +18,7 @@ class MainPageViewController: UIPageViewController {
     private var locationList = [Location]() {
         didSet {
             self.pageControl.numberOfPages = locationList.count
-            self.pageControl.setIndicatorImage(UIImage.init(systemName: "location.fill"), forPage: 0)
+//            self.pageControl.setIndicatorImage(UIImage.init(systemName: "location.fill"), forPage: 0)
         }
     }
     
@@ -49,7 +49,7 @@ class MainPageViewController: UIPageViewController {
     private func configPageViewController() {
         delegate = self
         dataSource = self
-//        self.didMove(toParent: self) //?
+
         
     }
     
@@ -127,31 +127,6 @@ extension MainPageViewController: UIPageViewControllerDelegate {
             self.view.backgroundColor = UIColor(patternImage: UIImage(named: ImageBackgroundType(Int(backgroundTime) ?? 0).rawValue)!)
         }
     }
-    
-//    func presentationCount(for pageViewController: UIPageViewController) -> Int {
-//        return locationList.count
-//    }
-    
-//     페이지 뷰가 전환될때
-//    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
-        
-
-//        print(pendingViewControllers)
-//        if pendingViewControllers[0] == vcArray[0] {
-//            bottomView.alpha = 0.0
-//            bottomView.isHidden = false
-//            UIView.animate(withDuration: 0.3, animations: { [weak self] in
-//                self!.bottomView.alpha = 1.0
-//            })
-//        } else {
-//            UIView.animate(withDuration: 0.3,
-//                                   animations: { [weak self] in
-//                                    self?.bottomView.alpha = 0.0
-//                    }) { [weak self] _ in
-//                        self?.bottomView.isHidden = true
-//                    }
-//        }
-//    }
 }
 
 

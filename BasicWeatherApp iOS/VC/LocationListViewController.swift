@@ -10,7 +10,6 @@ import UIKit
 class LocationListViewController: UIViewController {
     static let identifier: String = "\(LocationListViewController.self)"
     private let coreDatas = CoreDataManager()
-//    var locations = [Location]()
     
     weak var delegate: LocationListViewDelegate?
     
@@ -66,18 +65,14 @@ class LocationListViewController: UIViewController {
         tempBtnImage.toggle()
         print("tempBtnImage.toggle() \(tempBtnImage)")
     }
+    
     @IBAction func wepIconTouched(_ sender: Any) {
         UIApplication.shared.open(URL(string: "https://www.weather.go.kr/weather/forecast/timeseries.jsp")!, options: [:], completionHandler: nil)
     }
-    
-    
-    
-    
 }
 
 extension LocationListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(self.listViewModel.locationList.value?.count)
         return self.listViewModel.locationList.value?.count ?? 0
     }
     
@@ -101,7 +96,6 @@ extension LocationListViewController: UITableViewDataSource {
             coreDatas.deleteDataLocation(stateName: listViewModel.locationList.value![indexPath.row].state, entityName: coreDatas.listViewDataModelName)
             listViewModel.locationList.value!.remove(at: indexPath.row)
             }
-        print([indexPath])
         tableView.deleteRows(at: [indexPath], with: .fade)
         self.delegate?.userDeleteLocation(at: indexPath.row)
         }
@@ -115,16 +109,12 @@ extension LocationListViewController: UITableViewDelegate {
                                              image: image)
         self.dismiss(animated: true, completion: nil)
     }
-    
 }
 
 extension LocationListViewController: SearchViewDelegate {
     func userSelected(newLocation: Location) {
-//        let savingList = Array(locations[1..<locations.count])
-        // 추가되고 리스트뷰에 데이터를 표시
         self.listViewModel.convertLocationToCellData(newLocation)
         self.delegate?.userAdd(newLocation: newLocation)
-//        self.weatherListView.reloadData()
     }
 }
 

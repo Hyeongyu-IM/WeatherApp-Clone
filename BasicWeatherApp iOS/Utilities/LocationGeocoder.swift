@@ -91,7 +91,6 @@ extension LocationGeocoder: CLLocationManagerDelegate {
                 return
             }
             didUpdateCurrentLocation.toggle()
-            // delegate method for deiliver to copied viewController
             self.delegate?.locationManagerDidUpdate(currentLocation: currentLocation)
         }
     }

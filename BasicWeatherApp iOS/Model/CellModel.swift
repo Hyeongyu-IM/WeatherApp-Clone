@@ -9,7 +9,7 @@ import UIKit
 
 struct WeekendCell {
     let weekend: String
-    let icon: UIImage?
+    let icon: String?
     let minCTemp: String
     let maxCTemp: String
     let percent: String?
@@ -18,7 +18,7 @@ struct WeekendCell {
 struct HourCell {
     let dt: Int
     let time: String
-    let icon: UIImage?
+    let icon: String
     let Ctemp: String
 }
 

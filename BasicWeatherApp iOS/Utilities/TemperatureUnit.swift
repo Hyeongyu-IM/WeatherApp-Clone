@@ -15,6 +15,7 @@ class TemperatureUnit {
             self = bool ? .celcius : .fahrenheit
         }
     }
+    
 static let shared = TemperatureUnit()
     
     var unit: Unit

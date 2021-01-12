@@ -9,11 +9,10 @@ import UIKit
 
 class ListViewTableViewCell: UITableViewCell {
     static let registerID: String = "\(ListViewTableViewCell.self)"
-
+    
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var stateNameLabel: UILabel!
     @IBOutlet weak var currentTempLabel: UILabel!
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,7 +26,6 @@ class ListViewTableViewCell: UITableViewCell {
     
     func setWeatherData(from weatherItem: WeatherListViewCell) {
         self.timeLabel.text = weatherItem.time
-//        self.stateNameLabel.text = String(weatherItem.state.split(separator: "/")[1])
         self.stateNameLabel.text = weatherItem.state
         self.currentTempLabel.text = weatherItem.currentTempC
         self.backgroundColor = getbackgroundImage(weatherItem.backgrounTime)
@@ -40,5 +38,4 @@ class ListViewTableViewCell: UITableViewCell {
         self.background = color
         return color
     }
-    
 }

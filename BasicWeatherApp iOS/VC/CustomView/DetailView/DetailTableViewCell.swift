@@ -46,8 +46,8 @@ extension DetailTableViewCell: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailTableCollectionViewCell.registerID, for: indexPath) as? DetailTableCollectionViewCell,
-              let detailData = detailData else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailTableCollectionViewCell.registerID,              for: indexPath) as? DetailTableCollectionViewCell,
+                        let detailData = detailData else { return UICollectionViewCell() }
         
         switch indexPath.row {
         case 0:

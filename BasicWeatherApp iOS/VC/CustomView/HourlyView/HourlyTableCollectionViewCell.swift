@@ -22,7 +22,7 @@ class HourlyTableCollectionViewCell: UICollectionViewCell {
     
     func setHourData(_ hourData: HourCell) {
         self.weekendLabel.text = hourData.time
-        self.weatherIcon.image = hourData.icon
         self.hourlyTemp.text = hourData.Ctemp
+        self.weatherIcon.loadFromDirectory(imageName: hourData.icon)
     }
 }

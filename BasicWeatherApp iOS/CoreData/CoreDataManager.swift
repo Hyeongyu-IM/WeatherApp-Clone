@@ -240,7 +240,6 @@ class CoreDataManager {
         }
     }
     
-    
     func deleteAllDataLocation() {
         let fetrequest = NSFetchRequest<NSFetchRequestResult>(entityName: dataLocationModelName)
         let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetrequest)
@@ -251,10 +250,7 @@ class CoreDataManager {
         } catch {
             print(error)
         }
-    }
-    
-    //MARK: -ListViewData
-    
+    }    
 }
    
 

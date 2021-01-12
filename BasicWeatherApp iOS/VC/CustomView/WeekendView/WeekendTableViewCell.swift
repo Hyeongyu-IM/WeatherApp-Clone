@@ -24,7 +24,7 @@ class WeekendTableViewCell: UITableViewCell {
     
     func setWeekendData(weekendData: WeekendCell) {
         self.weekendLabel.text = weekendData.weekend
-        self.weekendIcon.image = weekendData.icon
+        self.weekendIcon.loadFromDirectory(imageName: weekendData.icon!)
         self.weekendPercent.text = weekendData.percent ?? ""
         self.weekendMaxTempLabel.text = weekendData.maxCTemp
         self.weekendMinTempLabel.text = weekendData.minCTemp
