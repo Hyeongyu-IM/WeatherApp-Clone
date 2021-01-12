@@ -1,5 +1,7 @@
 # WeatherApp-Clone
-SideProject
+# Project Guidelines &middot; [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+
+
 
 ## Standard iOS WeatherApp Clone Coding 시작일 ( 2020.12.03 )
 <img src="https://user-images.githubusercontent.com/64323969/102778627-471bd200-43d6-11eb-8da4-1e136a1b7073.png" width="40%" height="40%">
