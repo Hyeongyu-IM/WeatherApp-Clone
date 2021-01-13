@@ -10,13 +10,15 @@
 1. 사용자의 현재위치의 기상정보를 보여줍니다. 
 2. 사용자가 원하는 지역을 검색하고 추가하여 저장할수 있습니다.
 3. 섭씨 / 화씨를 선택할수 있습니다.
-4. 사용자가 설정한 온도, 지역을 앱이 꺼지더라도 저장합니다.
+4. 사용자가 설정한 온도, 지역을 앱이 꺼지더라도 저장합니다.<br/>
+<br/>
 
 ## 2️⃣설계 및 구현
 ### ViewController 구성
 <img src="https://user-images.githubusercontent.com/64323969/104324867-50a6de80-552b-11eb-8fd2-604832eda407.png" width="60%" height="60%">
 <img src="https://user-images.githubusercontent.com/64323969/104421233-6e715380-55be-11eb-8521-d6c45b2881fa.png" width="60%" height="60%">
 - 설계정리한 블로그입니다 : https://memohg.tistory.com/117
+<br/>
 
 ## 3️⃣날씨 모델과 View - MVVM
 ### WeatherViewController - WeatherViewModel
@@ -25,6 +27,7 @@
     - 바인더를 준것은 각각의 개별 타입에 준것이 아니라 기상정보가 한번 변하면 모든 값이 변하기 때문에 가장 마지막에 데이터가 담기는 인스턴스에 바인더를 걸고 값이 변하면 reload합니다
     - 뷰모델은 만들어지는 ViewController의 Location에 의해 데이터값이 전달되어 API요청을 통해 데이터를 각 셀에 맞는 데이터를 가지고 있습니다.
     - 페이지뷰에 들어가는 뷰컨트롤러의 뷰는 TableView를 기반으로 작업했기때문에 데이터가 바뀌는 경우는 TableView.reload을 한번만 호출합니다.
+<br/>
 
 ### 4️⃣View 관련 역할
 |Class / Struct|역할|
@@ -36,6 +39,7 @@
 |WeatherViewModel| WeatherAPI서비스를 이용하여 현재 날씨정보를 JSON형태로 받아옵니다. |
 |WeatherListViewModel| PageView와 SearchView를 통해 CoreData에 저장된 location 정보를 Api에 요청해서 ListViewCell 타입에 맞게 가공합니다|
 |Binder| 데이터 변화를 감지하고 업데이트 처리|
+<br/>
 
 ### 5️⃣Utilities
 |Class / Struct|역할|
@@ -45,6 +49,7 @@
 |WeatherCellDataMaker| ViewModel이 API를 통해 요청한 JSON데이터를 각 셀에 맞게 데이터를 가공하는 역할입니다. |
 |DateConverter|UTC, Unix타입 Time데이터를 변환해주는 역할입니다. |
 |WeatherAPI| Alamofire를 이용해 location정보를 가지고 API서버에 데이터를 요청합니다.|
+<br/>
 
 ### 6️⃣Weather Model Hierarchy
 ![스크린샷 2021-01-13 오후 3 34 03](https://user-images.githubusercontent.com/64323969/104415357-3a456500-55b5-11eb-976b-4622e5089594.png)
@@ -52,6 +57,7 @@
 
 - `CLLocationManager` 의 데이터를 받기위한 구조체입니다
 - 페이지 컨트롤러의 인스턴스에 바로 저장되며 페이지 Index를 카운트하고 뷰컨트롤러의 뷰모델을 생성할때 이용됩니다.
+<br/>
 
 ### CoreData
 - 내용정리 블로그 : https://memohg.tistory.com/118
@@ -59,6 +65,7 @@
     - User가 저장한 위치정보를 담고있으며 앱이 구동될때 페이지 컨트롤러에 정보를 넘겨줍니다.
 - WeatherListCell
     - WeatherListView를 나타내기위한 정보를 가지고있습니다.
+<br/>
 
 ## 7️⃣클래스별 구성특징
 
@@ -66,6 +73,7 @@
 - 사용자가 원하는 데이터를 앱을 종료하고도 보존하기 위해 사용자의 Interaction에 맞추어 저장, 불러오기, 삭제, 조회를 사용합니다. 
 - 중복되는 데이터의 저장을 피하기 위해서 먼저 값이 똑같은 데이터가 있는지 여부를 판단후 업데이트 하거나 저장합니다.
 - 사실 CoreData말고 UserDefault가 좀더 적합한것을 알았지만 CoreData를 한번 써보고 싶어서 사용하게 되었습니다. 
+<br/>
 
 ### ViewController Data Passing By Delegate
 - 뷰들간의 데이터이동은 Prepare를 사용해 봤었는데 이번에는 Delegate라는 방법이 있다는 것을 알게되서 사용해보게 되었습니다. 사실 이방법이 좀더 간단하고 좋았던것 같습니다.
@@ -79,7 +87,7 @@
 |WeatherListCellDelegate|메인뷰의 뷰모델이 업데이트되면 업데이트한 리스트셀정보를 코어데이터와 리스트뷰모델에 넘겨주는 역할을 합니다 |
 |LocationManagerDelegate|현재위치를 성공적으로 가져오면 현재위치정보를 업데이트 합니다|
 |SearchViewDelegate|유저가 선택한 위치정보를 저장합니다|
-
+<br/>
 
 ### CurrentLocation with CLLocationManager
 
@@ -91,6 +99,7 @@
     - 해당 method는 즉각 return 한다
     - 위치 값을 얻은 후, delegate 의 `didUpdateLocation` method 를 호출한다
 6. Delegate method - `didUpdateLocation`
+<br/>
 
 ### 날씨 정보 API로 받기 & 파싱하기
 - 사용한 API 주소 입니다 [One Call API](https://openweathermap.org/api/one-call-api)<br/>
@@ -100,18 +109,21 @@
 
 - 데이터는 위와같은 형식으로 크게 3가지로 나뉘어 들어오게 됩니다 현재날씨, 시간별날씨, 요일별날씨
 - Alamofire request, Codable, Codingkey를 이용해서 데이터를 파싱해서 사용하였습니다.
-
+<br/>
 
 ### 장소검색 Google Place AutoCompletion
 <img src="https://user-images.githubusercontent.com/64323969/104423784-e2f9c180-55c1-11eb-9206-61c38665b03b.png" width="30%" height="30%">
 - 내용정리 블로그 : https://memohg.tistory.com/120
+<br/>
 
 ### Unix data time UTC -> 각 나라별 시간으로 변환
 - 내용정리 블로그 : https://memohg.tistory.com/115
+<br/>
 
 ### 온도 단위 설정대로 바꾸어서 보여주기 - Singleton
 - 모든 온도가 버튼의 클릭에 의해 변하기 때문에 싱글톤을 활용하면 쉽게 변화 시킬수 있었습니다.
 - true & false 값을 저장해 true이면 celcius , false일경우 fahrenheit 표시하도록 했습니다. 
+<br/>
 
 ### Extension
 |Extension|역할|
@@ -119,16 +131,19 @@
 |StringInterpolation|- 디테일셀에 표시되는 단위명을 보간을 이용해서 자동으로 뒤에 단위가 붙도록 하였습니다|
 |Date|- UTC타임을 TimeIntervalsince1970을 통해서 Date값을 얻고 Timezone_Offset을 이용해서 각 지역에 맞는 시간을 구할수 있었습니다. |
 |UIImageView|처음 이미지를 다운로드하게되면 이미지가 나오지 않아 Delegate를 이용해서 처리했었는데 MVVM아키텍처에 맞지 않는 방법이라고 생각해 방법을 찾아보다가 UIImageView에 익스텐션을 이용해서 파일매니저에 저장된 이미지가 있으면 가져오는 방식으로 코드를 수정했습니다. 보통 직접적으로 url을 연결해서 사용하는 방식을 보았는데 저는 FileManager를 이용해서 다운받아 두어서 이렇게 해결하였습니다.|
+<br/>
 
 ### 사용한 OpenSource
 - Alamofire
 - Google Place SDK
+<br/>
 
 ### 참고 블로그
 - Alamofire: https://duwjdtn11.tistory.com/557
 - CoreData: https://ios-development.tistory.com/93
 - UI구성: https://www.youtube.com/watch?v=o2PG_x4-mjI 
 - API관련: https://hcn1519.github.io/articles/2017-09/swift_escaping_closure
+<br/>
 ---
 ## 날씨앱 클론코딩을 시작하게된 계기😎
 
