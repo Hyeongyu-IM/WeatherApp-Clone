@@ -14,7 +14,9 @@
 
 ## 2️⃣설계 및 구현
 ### ViewController 구성
-![스크린샷 2021-01-12 오후 11 10 04](https://user-images.githubusercontent.com/64323969/104324867-50a6de80-552b-11eb-8fd2-604832eda407.png )
+<img src="https://user-images.githubusercontent.com/64323969/104324867-50a6de80-552b-11eb-8fd2-604832eda407.png" width="60%" height="60%">
+<img src="https://user-images.githubusercontent.com/64323969/104421233-6e715380-55be-11eb-8521-d6c45b2881fa.png" width="60%" height="60%">
+- 설계정리한 블로그입니다 : https://memohg.tistory.com/117
 
 ## 3️⃣날씨 모델과 View - MVVM
 ### WeatherViewController - WeatherViewModel
@@ -45,6 +47,18 @@
 |WeatherAPI| Alamofire를 이용해 location정보를 가지고 API서버에 데이터를 요청합니다.|
 
 ### 6️⃣Weather Model Hierarchy
+![스크린샷 2021-01-13 오후 3 34 03](https://user-images.githubusercontent.com/64323969/104415357-3a456500-55b5-11eb-976b-4622e5089594.png)
+### Location
+
+- `CLLocationManager` 의 데이터를 받기위한 구조체입니다
+- 페이지 컨트롤러의 인스턴스에 바로 저장되며 페이지 Index를 카운트하고 뷰컨트롤러의 뷰모델을 생성할때 이용됩니다.
+
+### CoreData
+- 내용정리 블로그 : https://memohg.tistory.com/118
+- DataLocation
+    - User가 저장한 위치정보를 담고있으며 앱이 구동될때 페이지 컨트롤러에 정보를 넘겨줍니다.
+- WeatherListCell
+    - WeatherListView를 나타내기위한 정보를 가지고있습니다.
 
 ## 7️⃣클래스별 구성특징
 
@@ -89,10 +103,15 @@
 
 
 ### 장소검색 Google Place AutoCompletion
+<img src="https://user-images.githubusercontent.com/64323969/104423784-e2f9c180-55c1-11eb-9206-61c38665b03b.png" width="30%" height="30%">
+- 내용정리 블로그 : https://memohg.tistory.com/120
 
 ### Unix data time UTC -> 각 나라별 시간으로 변환
+- 내용정리 블로그 : https://memohg.tistory.com/115
 
 ### 온도 단위 설정대로 바꾸어서 보여주기 - Singleton
+- 모든 온도가 버튼의 클릭에 의해 변하기 때문에 싱글톤을 활용하면 쉽게 변화 시킬수 있었습니다.
+- true & false 값을 저장해 true이면 celcius , false일경우 fahrenheit 표시하도록 했습니다. 
 
 ### Extension
 |Extension|역할|
@@ -102,16 +121,14 @@
 |UIImageView|처음 이미지를 다운로드하게되면 이미지가 나오지 않아 Delegate를 이용해서 처리했었는데 MVVM아키텍처에 맞지 않는 방법이라고 생각해 방법을 찾아보다가 UIImageView에 익스텐션을 이용해서 파일매니저에 저장된 이미지가 있으면 가져오는 방식으로 코드를 수정했습니다. 보통 직접적으로 url을 연결해서 사용하는 방식을 보았는데 저는 FileManager를 이용해서 다운받아 두어서 이렇게 해결하였습니다.|
 
 ### 사용한 OpenSource
-
-### 문제해결
-처음 앱을 실행할때 이미지가 다운받아지기 전에 셀이 구성되고 이미지는 안보이는 문제
-
+- Alamofire
+- Google Place SDK
 
 ### 참고 블로그
-
-## Installing / Getting started
-
-
+- Alamofire: https://duwjdtn11.tistory.com/557
+- CoreData: https://ios-development.tistory.com/93
+- UI구성: https://www.youtube.com/watch?v=o2PG_x4-mjI 
+- API관련: https://hcn1519.github.io/articles/2017-09/swift_escaping_closure
 ---
 ## 날씨앱 클론코딩을 시작하게된 계기😎
 
