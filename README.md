@@ -1,6 +1,6 @@
 # 🌞 WeatherApp-Clone
 # Project Guidelines &middot; [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/your/your-project/blob/master/LICENSE)
-> 애플의 기본 날씨앱을 클론코딩 하였습니다. 100% 똑같지는 않지만 처음으로 대단위(?) 작업을 한것으로 한달여에 걸쳐 작업하였습니다. 
+> 애플의 기본 날씨앱을 클론코딩 하였습니다.
 
 ![ezgif com-gif-maker (3)](https://user-images.githubusercontent.com/64323969/104320363-92cd2180-5525-11eb-8062-716790f6b8fb.gif)
 ![ezgif com-gif-maker (4)](https://user-images.githubusercontent.com/64323969/104320379-995b9900-5525-11eb-8d11-c1e76d4225f7.gif)
